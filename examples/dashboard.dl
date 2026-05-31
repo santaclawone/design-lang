@@ -1,0 +1,50 @@
+// Design Lang — Dashboard Demo
+// Demonstrates multiple components and property types
+
+element revenue-card {
+  layout: adaptive(priority: "importance", density: availableSpace())
+  surface: glass(blur: 16px, tint: cyan)
+  content: [
+    { value: "$128.9M", label: "Revenue", trend: "+12.4%" },
+    { value: "94.2%", label: "Uptime", trend: "+0.3%" }
+  ]
+
+  @birth: fade-in(duration: 0.5s)
+  @hover: scale(amount: 1.02)
+}
+
+element cta-button {
+  surface: ceramic(glaze: 0.85, warmth: 0.6)
+  physics: spring(stiffness: 250, damping: 25, mass: 8g)
+  typography: gradient(linear, [cyan, purple])
+  touch_targets: 48px
+  focus: auto(style: glow, width: 2px)
+  motion: respect(user.preference)
+
+  haptic: { on_interact: click(force: 20g, duration: 40ms) }
+  audio: { on_hover: chime(freq: 660hz), on_click: confirm() }
+
+  @birth: fade-in(duration: 0.3s)
+  @hover: scale(amount: 1.05)
+  @press: scale(amount: 0.95)
+}
+
+element material-demo {
+  surface: metal(finish: brushed, anisotropy: 0.7)
+  morph: rounded(radius: 8px, active: 50%)
+  light: glow(color: cyan, spread: 30px, animated: true)
+  cursor: custom(icon: brand)
+}
+
+element density-demo {
+  density: spacious
+  layout: container-relative(gap: responsive(8px, 24px))
+  contrast: auto(base: WCAG.AAA)
+  touch_targets: 44px
+}
+
+element accent-demo {
+  accent: brutal(color: #FF2D78, weight: 3px, offset: 4px)
+  surface: textile(weave: twill, density: 0.3)
+  tooltip: proximity(show: 200ms, hide: 150ms, edge: smart)
+}

@@ -1,0 +1,12 @@
+// Design Lang — Button component
+element primary-button {
+  surface: glass(blur: 12px, tint: cyan)
+  physics: spring(stiffness: 180, damping: 20, mass: 12g)
+  typography: gradient(linear, [cyan, purple])
+  touch_targets: 48px
+  haptic: { on_interact: click(force: 25g, duration: 50ms) }
+
+  @birth: fade-in(duration: 0.5s)
+  @hover: scale(amount: 1.04)
+  @press: scale(amount: 0.95)
+}

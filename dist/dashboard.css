@@ -1,0 +1,113 @@
+/* ─── Design Lang Compiled CSS ─── */
+
+@keyframes dl-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dl-revenue-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  container-type: inline-size;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  animation: dl-fade-in 0.5s ease-out both;
+}
+
+.dl-revenue-card:hover {
+  transform: scale(1.02);
+}
+
+@keyframes dl-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dl-cta-button {
+  background: linear-gradient(135deg, cyan, purple);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.37);
+  --dl-stiffness: 250;
+  --dl-damping: 25;
+  --dl-mass: 8;
+  transition: box-shadow 0.2s ease;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+  outline: none;
+  animation: dl-fade-in 0.3s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dl-cta-button {
+    animation: none;
+    transition: none;
+  }
+}
+
+.dl-cta-button:hover {
+  --dl-physics-hover: 1;
+}
+
+.dl-cta-button:hover {
+  transform: scale(1.05);
+}
+
+.dl-cta-button:active {
+  transform: scale(0.95);
+}
+
+.dl-material-demo {
+  background: conic-gradient(from 45deg, #1a1a2e, #2a2a3e, #1a1a2e, #3a3a4e, #1a1a2e);
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(6,182,212,0.3);
+  transition: border-radius 0.3s ease;
+  animation: dl-glow-pulse 2s ease-in-out infinite alternate;
+}
+
+.dl-material-demo:hover {
+  border-radius: 50%;
+}
+
+.dl-density-demo {
+  padding: 24px;
+  gap: ;
+  font-size: 1.1rem;
+  container-type: inline-size;
+  color-scheme: light dark;
+  --dl-contrast: 7:1;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.dl-accent-demo {
+  border: 3px solid #FF2D78;
+  box-shadow: 4px 4px 0 #FF2D78;
+  border-radius: 12px;
+  background: repeating-linear-gradient(0deg, transparent, transparent 13px, rgba(255,255,255,0.03) 13px, rgba(255,255,255,0.03) 26px), repeating-linear-gradient(90deg, transparent, transparent 13px, rgba(255,255,255,0.03) 13px, rgba(255,255,255,0.03) 26px);
+  background-color: #0f172a;
+}

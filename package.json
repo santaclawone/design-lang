@@ -1,0 +1,31 @@
+{
+  "name": "@empire/design-lang",
+  "version": "0.1.0",
+  "description": "Design Lang — a declarative design language that compiles to CSS + JS. Beyond CSS constraints.",
+  "main": "src/compiler.js",
+  "bin": {
+    "dl": "./cli.js"
+  },
+  "scripts": {
+    "build:parser": "peggy grammar.peggy -o src/parser.js",
+    "compile": "node cli.js compile",
+    "prepublishOnly": "npm run build:parser"
+  },
+  "keywords": ["design", "language", "css", "dsl", "compiler", "ui", "physics", "accessibility"],
+  "author": "Empire Creative",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "peggy": "^5.1.0"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/santaclawone/design-lang"
+  },
+  "files": [
+    "cli.js",
+    "src/",
+    "grammar.peggy",
+    "README.md"
+  ]
+}
