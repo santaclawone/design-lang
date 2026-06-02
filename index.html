@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Lang ✦ Beyond CSS — Full Reference + Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Space+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#05080e;color:#e8eaed;line-height:1.6;overflow-x:hidden}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+.hero{text-align:center;padding:120px 20px 60px;position:relative}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.5rem,7vw,5rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px}
+.hero .gradient{background:linear-gradient(135deg,#06b6d4,#8b5cf6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.1rem;color:#94a3b8;max-width:600px;margin:0 auto 32px;line-height:1.7}
+.mono{font-family:'JetBrains Mono',monospace;color:#06b6d4}
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.7rem;background:rgba(6,182,212,0.1);color:#06b6d4;padding:4px 12px;border-radius:20px;border:1px solid rgba(6,182,212,0.15);margin-bottom:16px}
+
+section{padding:80px 0}
+
+/* REFERENCE TABLE */
+table{width:100%;border-collapse:collapse;font-size:0.85rem}
+th{text-align:left;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;border-bottom:2px solid rgba(255,255,255,0.06)}
+td{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top}
+tr:hover td{background:rgba(255,255,255,0.01)}
+.property{font-family:'JetBrains Mono',monospace;color:#06b6d4;font-size:0.85rem;white-space:nowrap}
+.code{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:#c084fc}
+.desc{color:#94a3b8;font-size:0.8rem}
+.tag-new{display:inline-block;font-size:0.55rem;font-family:'JetBrains Mono',monospace;background:#a3d977;color:#05080e;padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:600;vertical-align:middle}
+.tag-v1{display:inline-block;font-size:0.55rem;font-family:'JetBrains Mono',monospace;background:rgba(6,182,212,0.15);color:#06b6d4;padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:600;vertical-align:middle}
+
+.category-header td{padding:16px;background:rgba(6,182,212,0.02);border-bottom:1px solid rgba(6,182,212,0.08);font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:#f1f5f9}
+
+/* SHOWCASE */
+#showcase{background:rgba(0,0,0,0.2)}
+.showcase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.showcase-card{background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
+.showcase-card:hover{transform:translateY(-4px);border-color:rgba(6,182,212,0.2)}
+.showcase-card .sc-number{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(6,182,212,0.3);margin-bottom:8px}
+.showcase-card h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;margin-bottom:6px}
+.showcase-card .sc-code{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#c084fc;background:rgba(0,0,0,0.3);border-radius:6px;padding:8px 12px;margin:8px 0;overflow-x:auto;white-space:nowrap}
+.showcase-card .sc-desc{font-size:0.8rem;color:#94a3b8;line-height:1.5}
+
+/* SHOWCASE DEMO BOXES */
+.demo-box{width:100%;height:80px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#64748b;margin-bottom:12px;position:relative;overflow:hidden}
+.demo-box.demo-glass{background:rgba(15,23,42,0.7);border:1px solid rgba(255,255,255,0.06)}
+.demo-box.demo-ceramic{background:linear-gradient(145deg,#1e293b,#0f172a);border:1px solid rgba(255,255,255,0.06)}
+.demo-box.demo-metal{background:rgba(15,23,42,0.8);border:1px solid rgba(255,255,255,0.06)}
+.demo-box.demo-clay{border-radius:24px;background:linear-gradient(145deg,#1e293b,#0f172a);border:1px solid rgba(255,255,255,0.06)}
+.demo-gradient-text{background:linear-gradient(135deg,#06b6d4,#8b5cf6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;font-size:1.5rem !important}
+.demo-float{transition:transform 0.3s;cursor:default}
+.demo-float:hover{transform:translateZ(50px)}
+.demo-parallax{will-change:transform}
+.demo-extruded{box-shadow:4px 4px 0 rgba(0,0,0,0.3)}
+.demo-breathe{animation:pulseDemo 3s ease-in-out infinite}
+@keyframes pulseDemo{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.05);opacity:0.8}}
+.demo-tilt{transition:transform 0.2s}
+.demo-shimmer{position:relative}
+.demo-shimmer::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);animation:shimmerAnim 1.5s infinite}
+@keyframes shimmerAnim{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.demo-glow{box-shadow:0 0 30px rgba(6,182,212,0.3)}
+.demo-brutal{box-shadow:4px 4px 0 #ff2d78}
+.demo-marquee{overflow:hidden;white-space:nowrap}
+.demo-marquee span{display:inline-block;animation:marqueeAnim 8s linear infinite}
+@keyframes marqueeAnim{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.demo-stagger-children{display:flex;gap:4px}
+.demo-stagger-dot{width:12px;height:12px;border-radius:50%;background:#06b6d4;animation:staggerAnim 1s ease-out}
+.demo-stagger-dot:nth-child(1){animation-delay:0s}
+.demo-stagger-dot:nth-child(2){animation-delay:0.1s}
+.demo-stagger-dot:nth-child(3){animation-delay:0.2s}
+.demo-stagger-dot:nth-child(4){animation-delay:0.3s}
+.demo-stagger-dot:nth-child(5){animation-delay:0.4s}
+@keyframes staggerAnim{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+.demo-mask-mask{background:linear-gradient(to bottom,black 50%,transparent);-webkit-mask-image:linear-gradient(to bottom,black 50%,transparent);mask-image:linear-gradient(to bottom,black 50%,transparent)}.demo-number{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;font-weight:700;color:#06b6d4}
+.demo-typewriter{overflow:hidden;white-space:nowrap;border-right:2px solid #06b6d4;animation:typeAnim 3s steps(20) infinite}
+@keyframes typeAnim{0%{width:0}50%{width:100%}100%{width:100%}}
+.demo-ripple-btn{position:relative;overflow:hidden;cursor:pointer;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.2);border-radius:8px;padding:8px 16px;color:#06b6d4;font-size:0.8rem}
+.demo-progress-bar{position:relative;width:100%;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.demo-progress-fill{height:100%;width:60%;background:linear-gradient(90deg,#06b6d4,#8b5cf6);border-radius:3px;animation:progressAnim 2s ease-in-out infinite}
+@keyframes progressAnim{0%{width:0%}50%{width:80%}100%{width:0%}}
+
+/* NEW SHOWCASE */
+.new-badge{display:inline-flex;align-items:center;gap:4px;font-size:0.55rem;font-family:'JetBrains Mono',monospace;background:#a3d977;color:#05080e;padding:1px 6px;border-radius:4px;font-weight:600;margin-left:6px;vertical-align:middle}
+
+/* FOOTER */
+footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
+.footer-bottom{text-align:center;font-size:0.8rem;color:#475569}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">✦ v0.1 — 45 properties</div>
+  <h1>Design Lang<br><span class="gradient">Beyond CSS</span></h1>
+  <p>A declarative design language that compiles to CSS + JS. Instead of hacking CSS for modern UI patterns, Design Lang makes them native — physics, materials, depth, motion, accessibility, haptics, and more.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <code style="background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:8px 16px;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#94a3b8">npm install -g @empire/design-lang</code>
+  </div>
+</section>
+
+<!-- REFERENCE TABLE -->
+<section id="reference">
+  <div class="container">
+    <div style="margin-bottom:40px">
+      <span class="badge">✦ Complete Property Reference</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">45 properties,<br>one language.</h2>
+      <p style="color:#64748b;font-size:0.9rem"><span class="tag-v1">v0.1</span> Original property &nbsp; <span class="tag-new">NEW</span> Added June 2026</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th style="width:25%">Property</th><th style="width:40%">Syntax Example</th><th style="width:35%">Description</th></tr>
+      </thead>
+      <tbody>
+
+        <!-- SURFACES -->
+        <tr class="category-header"><td colspan="3">Surfaces</td></tr>
+        <tr><td class="property">surface</td><td class="code">glass(blur: 12px, tint: cyan)</td><td class="desc">Translucent backdrop blur surface <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">surface</td><td class="code">ceramic(glaze: 0.85, warmth: 0.5)</td><td class="desc">Warm glossy finish <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">surface</td><td class="code">metal(finish: brushed, anisotropy: 0.7)</td><td class="desc">Brushed metallic finish <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">surface</td><td class="code">textile(weave: twill, density: 0.4)</td><td class="desc">Fabric weave texture <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">surface</td><td class="code">clay(softness: 0.3, light: top-left)</td><td class="desc">Soft 3D clay material <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">surface</td><td class="code">grain(intensity: 0.03)</td><td class="desc">SVG noise grain overlay <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">border</td><td class="code">gradient(linear, [cyan, purple], width: 2px)</td><td class="desc">Gradient border using border-image <span class="tag-new">NEW</span></td></tr>
+
+        <!-- PHYSICS -->
+        <tr class="category-header"><td colspan="3">Physics</td></tr>
+        <tr><td class="property">physics</td><td class="code">spring(stiffness: 180, damping: 20, mass: 12g)</td><td class="desc">Spring physics solver on hover/press <span class="tag-v1">v0.1</span></td></tr>
+
+        <!-- TYPOGRAPHY -->
+        <tr class="category-header"><td colspan="3">Typography</td></tr>
+        <tr><td class="property">typography</td><td class="code">gradient(linear, [cyan, purple])</td><td class="desc">Gradient text fill <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">typography</td><td class="code">volumetric(value: 900)</td><td class="desc">Variable font weight axis <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">variant</td><td class="code">font(optical: true, axes: {wght: 400..700, wdth: 75..100})</td><td class="desc">Variable font axis config with ranges <span class="tag-new">NEW</span></td></tr>
+
+        <!-- LAYOUT -->
+        <tr class="category-header"><td colspan="3">Layout</td></tr>
+        <tr><td class="property">layout</td><td class="code">adaptive(priority: "importance")</td><td class="desc">Auto-fill responsive grid <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">layout</td><td class="code">container-relative(gap: 16px)</td><td class="desc">Container query based layout <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">layout</td><td class="code">reflow(breakpoints: auto)</td><td class="desc">Flex-wrap reflow layout <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">masonry</td><td class="code">layout(columns: 3, gap: 16px, balance: true)</td><td class="desc">Masonry grid layout <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">stagger</td><td class="code">children(delay: 0.05s, cascade: forward)</td><td class="desc">Stagger child element animations on mount <span class="tag-new">NEW</span></td></tr>
+
+        <!-- DEPTH & SPACE -->
+        <tr class="category-header"><td colspan="3">Depth & Space</td></tr>
+        <tr><td class="property">depth</td><td class="code">float(z: 50px, perspective: 800px)</td><td class="desc">3D perspective transform, z-axis elevation <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">parallax</td><td class="code">scroll(factor: 0.3, axis: y)</td><td class="desc">Scroll-driven parallax speed <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">mask</td><td class="code">gradient(from: top, colors: [black, transparent])</td><td class="desc">CSS gradient mask for edge fade <span class="tag-new">NEW</span></td></tr>
+
+        <!-- THEME & COLOR -->
+        <tr class="category-header"><td colspan="3">Theme & Color</td></tr>
+        <tr><td class="property">theme</td><td class="code">light(primary: #06b6d4, surface: #fff) dark(secondary: #8b5cf6)</td><td class="desc">Theme-aware token map — compiles to light-dark() <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">shadow</td><td class="code">extruded(depth: 4px, angle: 45deg, color: black)</td><td class="desc">Hard offset neo-brutalist shadow <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">filter</td><td class="code">css(blur: 4px, brightness: 1.2, saturate: 1.5)</td><td class="desc">Chainable CSS filter parameters <span class="tag-new">NEW</span></td></tr>
+
+        <!-- ACCESSIBILITY -->
+        <tr class="category-header"><td colspan="3">Accessibility</td></tr>
+        <tr><td class="property">touch_targets</td><td class="code">48px</td><td class="desc">Minimum interactive area <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">contrast</td><td class="code">auto(base: WCAG.AAA)</td><td class="desc">Color contrast enforcement <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">motion</td><td class="code">respect(user.preference)</td><td class="desc">Reduced motion support <span class="tag-v1">v0.1</span></td></tr>
+
+        <!-- INTERACTIONS -->
+        <tr class="category-header"><td colspan="3">Interactions</td></tr>
+        <tr><td class="property">haptic</td><td class="code">{ on_interact: click(force: 25g) }</td><td class="desc">Vibration feedback on touch <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">audio</td><td class="code">{ on_hover: chime(freq: 880hz) }</td><td class="desc">Audio tone on hover <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">cursor</td><td class="code">custom()</td><td class="desc">Custom cursor element <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">tooltip</td><td class="code">proximity()</td><td class="desc">Proximity-based tooltip <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">ripple</td><td class="code">click(color: white, duration: 0.6s, origin: mouse)</td><td class="desc">Material ripple effect on click <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">gesture</td><td class="code">swipe(left: @dismiss, right: @reveal)</td><td class="desc">Touch swipe gesture bindings <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">gesture</td><td class="code">longpress(ms: 500, action: @menu)</td><td class="desc">Long press with haptic <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">magnetic</td><td class="code">attract(strength: 0.3, radius: 200px)</td><td class="desc">Cursor magnetic attraction zone <span class="tag-new">NEW</span></td></tr>
+
+        <!-- EFFECTS -->
+        <tr class="category-header"><td colspan="3">Effects</td></tr>
+        <tr><td class="property">light</td><td class="code">spotlight(radius: 200px, intensity: 0.15)</td><td class="desc">Radial gradient spotlight <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">light</td><td class="code">glow(color: cyan, spread: 20px, animated: false)</td><td class="desc">Box-shadow glow <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">morph</td><td class="code">rounded(radius: 8px, active: 50%)</td><td class="desc">Border radius with hover morph <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">focus</td><td class="code">auto(style: glow, width: 2px)</td><td class="desc">Focus ring style <span class="tag-v1">v0.1</span></td></tr>
+
+        <!-- DENSITY -->
+        <tr class="category-header"><td colspan="3">Density</td></tr>
+        <tr><td class="property">density</td><td class="code">spacious / cozy / compact / auto</td><td class="desc">Padding and scale presets <span class="tag-v1">v0.1</span></td></tr>
+
+        <!-- ACCENTS -->
+        <tr class="category-header"><td colspan="3">Accents</td></tr>
+        <tr><td class="property">accent</td><td class="code">brutal(color: #FF2D78, weight: 3px, offset: 4px)</td><td class="desc">Neo-brutalist border + shadow <span class="tag-v1">v0.1</span></td></tr>
+
+        <!-- ANIMATION & MOTION -->
+        <tr class="category-header"><td colspan="3">Animation & Motion</td></tr>
+        <tr><td class="property">frame</td><td class="code">custom({0%: {opacity: 0, scale: 0.8}, 100%: {opacity: 1, scale: 1}})</td><td class="desc">Inline custom keyframe definition <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">breathe</td><td class="code">pulse(duration: 3s, scale: 1.05, opacity: 0.8)</td><td class="desc">Gentle breathing loop animation <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">number</td><td class="code">tween(from: 0, to: 10000, duration: 1.5s)</td><td class="desc">Animated number counter on viewport entry <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">type</td><td class="code">writer(text: "Hello world", speed: 60ms, cursor: true)</td><td class="desc">Typewriter text reveal <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">overflow</td><td class="code">marquee(speed: 30s, direction: left, pause: hover)</td><td class="desc">Auto-scrolling text marquee <span class="tag-new">NEW</span></td></tr>
+
+        <!-- LIFECYCLE HOOKS -->
+        <tr class="category-header"><td colspan="3">Lifecycle Hooks</td></tr>
+        <tr><td class="property">@birth</td><td class="code">fade-in(duration: 0.5s)</td><td class="desc">Entry animation on mount <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">@hover</td><td class="code">scale(amount: 1.04)</td><td class="desc">Hover state transform <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">@press</td><td class="code">scale(amount: 0.95)</td><td class="desc">Press state transform <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">observe</td><td class="code">viewport(enter: @animate, exit: @reset, once: true)</td><td class="desc">Intersection Observer hook to lifecycle <span class="tag-new">NEW</span></td></tr>
+
+        <!-- PROGRESS & STATE -->
+        <tr class="category-header"><td colspan="3">Progress & State</td></tr>
+        <tr><td class="property">track</td><td class="code">scroll(progress: true, color: cyan, position: top)</td><td class="desc">Scroll progress bar <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">placeholder</td><td class="code">shimmer(base: #1e293b, highlight: #334155, speed: 1.5s)</td><td class="desc">Skeleton loading shimmer <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">lazy</td><td class="code">load(rootMargin: 200px, placeholder: shimmer)</td><td class="desc">Lazy load config with placeholder type <span class="tag-new">NEW</span></td></tr>
+
+        <!-- RESPONSIVE -->
+        <tr class="category-header"><td colspan="3">Responsive</td></tr>
+        <tr><td class="property">break</td><td class="code">points(sm: 640px, md: 768px, lg: 1024px, xl: 1280px)</td><td class="desc">Custom responsive breakpoint tokens <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">scroll</td><td class="code">snap(axis: x, behavior: mandatory, alignment: center)</td><td class="desc">CSS scroll snap container <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">grid</td><td class="code">auto-fill(min: 200px, max: 1fr)</td><td class="desc">Auto-fill grid columns <span class="tag-v1">v0.1</span></td></tr>
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="container">
+    <div style="margin-bottom:40px">
+      <span class="badge">✦ Interactive Showcase</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">25 new properties<br>in action.</h2>
+      <p style="color:#64748b;font-size:0.9rem">Hover, press, touch — each card demonstrates a Design Lang property visually <span class="tag-new">NEW</span></p>
+    </div>
+
+    <div class="showcase-grid">
+
+      <!-- 1. depth: float -->
+      <div class="showcase-card">
+        <div class="sc-number">#1</div>
+        <div class="demo-box demo-glass demo-float" style="transform:perspective(800px);transition:transform 0.3s" onmousemove="this.style.transform='perspective(800px) rotateX('+((event.clientY-this.getBoundingClientRect().top)/this.offsetHeight-0.5)*-20+'deg) rotateY('+((event.clientX-this.getBoundingClientRect().left)/this.offsetWidth-0.5)*20+'deg) translateZ(30px)'" onmouseleave="this.style.transform='perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)'">
+          <span style="font-size:0.8rem;color:#94a3b8">🖱 Hover me</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">depth: float</div>
+        <div class="sc-code">depth: float(z: 50px, perspective: 800px)</div>
+        <div class="sc-desc">3D perspective transform with z-axis elevation. Follows mouse tilt.</div>
+      </div>
+
+      <!-- 2. parallax: scroll -->
+      <div class="showcase-card">
+        <div class="sc-number">#2</div>
+        <div class="demo-box demo-glass" style="position:relative;overflow:hidden">
+          <div style="position:absolute;inset:-20px;background:linear-gradient(135deg,rgba(6,182,212,0.3),rgba(139,92,246,0.1));transition:transform 0.1s linear" id="parallaxDemo"></div>
+          <span style="position:relative;z-index:1">⬇ Scroll to see</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">parallax: scroll</div>
+        <div class="sc-code">parallax: scroll(factor: 0.3, axis: y)</div>
+        <div class="sc-desc">Element moves at reduced speed relative to scroll — creates depth.</div>
+      </div>
+
+      <!-- 3. mask: gradient -->
+      <div class="showcase-card">
+        <div class="sc-number">#3</div>
+        <div class="demo-box" style="background:linear-gradient(135deg,#06b6d4,#8b5cf6);-webkit-mask-image:linear-gradient(to bottom,black 50%,transparent);mask-image:linear-gradient(to bottom,black 50%,transparent)"></div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">mask: gradient</div>
+        <div class="sc-code">mask: gradient(from: top, colors: [black, transparent])</div>
+        <div class="sc-desc">Fades the bottom 50% out — the gradient itself is visible at top, invisible at bottom.</div>
+      </div>
+
+      <!-- 4. theme: light/dark -->
+      <div class="showcase-card">
+        <div class="sc-number">#4</div>
+        <div class="demo-box" style="background:rgba(15,23,42,0.7);border:1px solid rgba(255,255,255,0.06);gap:8px;flex-direction:column">
+          <span style="font-size:0.65rem;color:#94a3b8">🌓 Try system theme toggle</span>
+          <span style="font-size:0.7rem;color:#06b6d4">Primary: #06b6d4</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">theme: light/dark</div>
+        <div class="sc-code">theme: light(primary: #06b6d4) dark(surface: #0f172a)</div>
+        <div class="sc-desc">Compiles to light-dark() — swap theme tokens on preference.</div>
+      </div>
+
+      <!-- 5. shadow: extruded -->
+      <div class="showcase-card">
+        <div class="sc-number">#5</div>
+        <div class="demo-box demo-glass" style="box-shadow:6px 6px 0 rgba(0,0,0,0.5)"></div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">shadow: extruded</div>
+        <div class="sc-code">shadow: extruded(depth: 4px, angle: 45deg)</div>
+        <div class="sc-desc">Hard offset shadow — neo-brutalist inspired. No blur, just solid color.</div>
+      </div>
+
+      <!-- 6. border: gradient -->
+      <div class="showcase-card">
+        <div class="sc-number">#6</div>
+        <div class="demo-box demo-glass" style="border:2px solid;border-image:linear-gradient(135deg,#06b6d4,#8b5cf6) 1"></div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">border: gradient</div>
+        <div class="sc-code">border: gradient(linear, [cyan, purple], width: 2px)</div>
+        <div class="sc-desc">Gradient border using border-image. Color blends along the edge.</div>
+      </div>
+
+      <!-- 7. filter: css -->
+      <div class="showcase-card">
+        <div class="sc-number">#7</div>
+        <div class="demo-box" style="background:linear-gradient(135deg,#06b6d4,#8b5cf6);filter:blur(2px) brightness(1.1) saturate(1.3)"></div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">filter: css</div>
+        <div class="sc-code">filter: css(blur: 2px, brightness: 1.1, saturate: 1.3)</div>
+        <div class="sc-desc">Chainable CSS filters — blur, brightness, saturation in one declaration.</div>
+      </div>
+
+      <!-- 8. stagger: children -->
+      <div class="showcase-card">
+        <div class="sc-number">#8</div>
+        <div class="demo-box demo-glass" style="flex-direction:row;gap:6px">
+          <div style="width:14px;height:14px;border-radius:50%;background:#06b6d4;animation:staggerAnim 0.6s ease-out;animation-delay:0s"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:#06b6d4;animation:staggerAnim 0.6s ease-out;animation-delay:0.08s"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:#06b6d4;animation:staggerAnim 0.6s ease-out;animation-delay:0.16s"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:#06b6d4;animation:staggerAnim 0.6s ease-out;animation-delay:0.24s"></div>
+          <div style="width:14px;height:14px;border-radius:50%;background:#06b6d4;animation:staggerAnim 0.6s ease-out;animation-delay:0.32s"></div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">stagger: children</div>
+        <div class="sc-code">stagger: children(delay: 0.05s, cascade: forward)</div>
+        <div class="sc-desc">Children animate in sequence — each dot delayed relative to sibling.</div>
+      </div>
+
+      <!-- 9. break: points -->
+      <div class="showcase-card">
+        <div class="sc-number">#9</div>
+        <div class="demo-box demo-glass" style="flex-direction:column;gap:4px">
+          <span style="font-size:0.6rem;color:#64748b">sm: 640px — md: 768px — lg: 1024px</span>
+          <div style="width:100%;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;position:relative">
+            <div style="position:absolute;left:50%;width:2px;height:8px;background:#8b5cf6;top:-2px" title="768px breakpoint"></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">break: points</div>
+        <div class="sc-code">break: points(sm: 640px, md: 768px, lg: 1024px)</div>
+        <div class="sc-desc">Declare custom breakpoint tokens that cascade through all responsive rules.</div>
+      </div>
+
+      <!-- 10. scroll: snap -->
+      <div class="showcase-card">
+        <div class="sc-number">#10</div>
+        <div class="demo-box demo-glass" style="flex-direction:row;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 8px;justify-content:flex-start">
+          <div style="min-width:60px;height:50px;background:rgba(6,182,212,0.15);border-radius:6px;flex-shrink:0;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#06b6d4">1</div>
+          <div style="min-width:60px;height:50px;background:rgba(139,92,246,0.15);border-radius:6px;flex-shrink:0;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#8b5cf6">2</div>
+          <div style="min-width:60px;height:50px;background:rgba(163,217,119,0.15);border-radius:6px;flex-shrink:0;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#a3d977">3</div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">scroll: snap</div>
+        <div class="sc-code">scroll: snap(axis: x, behavior: mandatory)</div>
+        <div class="sc-desc">← Swipe → — snap-to-item scrolling. Each item locks into center.</div>
+      </div>
+
+      <!-- 11. masonry: layout -->
+      <div class="showcase-card">
+        <div class="sc-number">#11</div>
+        <div style="columns:3;gap:6px;margin-bottom:10px;width:100%">
+          <div style="height:30px;background:rgba(6,182,212,0.1);border-radius:4px;margin-bottom:6px"></div>
+          <div style="height:50px;background:rgba(139,92,246,0.1);border-radius:4px;margin-bottom:6px"></div>
+          <div style="height:20px;background:rgba(163,217,119,0.1);border-radius:4px;margin-bottom:6px"></div>
+          <div style="height:40px;background:rgba(6,182,212,0.1);border-radius:4px;margin-bottom:6px"></div>
+          <div style="height:25px;background:rgba(139,92,246,0.1);border-radius:4px;margin-bottom:6px"></div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">masonry: layout</div>
+        <div class="sc-code">masonry: layout(columns: 3, gap: 16px)</div>
+        <div class="sc-desc">Pinterest-style masonry — items fill vertical gaps naturally.</div>
+      </div>
+
+      <!-- 12. frame: custom -->
+      <div class="showcase-card">
+        <div class="sc-number">#12</div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <div style="width:40px;height:40px;border-radius:8px;background:linear-gradient(135deg,#06b6d4,#8b5cf6);animation:frameCustom 2s ease-in-out infinite"></div>
+          <style>@keyframes frameCustom{0%{transform:scale(0.8) rotate(-5deg);opacity:0}50%{transform:scale(1.1) rotate(3deg);opacity:1}100%{transform:scale(0.8) rotate(-5deg);opacity:0}}</style>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">frame: custom</div>
+        <div class="sc-code">frame: custom({0%: {scale: 0.8, rotate: -5deg}, 100%: {scale: 1}})</div>
+        <div class="sc-desc">Inline multi-step keyframe. Rotate, scale, and opacity cycle.</div>
+      </div>
+
+      <!-- 13. breathe: pulse -->
+      <div class="showcase-card">
+        <div class="sc-number">#13</div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <div style="width:40px;height:40px;border-radius:50%;background:#06b6d4;animation:pulseBreath 3s ease-in-out infinite;box-shadow:0 0 30px rgba(6,182,212,0.3)"></div>
+          <style>@keyframes pulseBreath{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:0.7}}</style>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">breathe: pulse</div>
+        <div class="sc-code">breathe: pulse(duration: 3s, scale: 1.15, opacity: 0.7)</div>
+        <div class="sc-desc">Gentle breathing loop — great for live indicators, loading states.</div>
+      </div>
+
+      <!-- 14. ripple: click -->
+      <div class="showcase-card">
+        <div class="sc-number">#14</div>
+        <div class="demo-box" style="flex-direction:column;cursor:pointer" onclick="this.querySelector('.ripple-effect')?.remove();var r=document.createElement('div');r.className='ripple-effect';r.style.cssText='position:absolute;width:20px;height:20px;border-radius:50%;background:rgba(6,182,212,0.4);left:'+(event.offsetX-10)+'px;top:'+(event.offsetY-10)+'px;transform:scale(0);animation:rippleAnim 0.6s ease-out';this.appendChild(r);setTimeout(function(){r.remove()},600)">
+          <span style="position:relative;z-index:1;font-size:0.8rem;color:#94a3b8">👆 Click anywhere</span>
+          <style>@keyframes rippleAnim{to{transform:scale(6);opacity:0}}</style>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">ripple: click</div>
+        <div class="sc-code">ripple: click(color: white, duration: 0.6s, origin: mouse)</div>
+        <div class="sc-desc">Material ripple on click/tap. Ripples originate from touch point.</div>
+      </div>
+
+      <!-- 15. number: tween -->
+      <div class="showcase-card">
+        <div class="sc-number">#15</div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:#06b6d4" id="numberDemo">0</span>
+          <span style="font-size:0.65rem;color:#64748b">Counter tweens on viewport entry</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">number: tween</div>
+        <div class="sc-code">number: tween(from: 0, to: 10000, duration: 1.5s)</div>
+        <div class="sc-desc">Animated counter — incrementally tweens between values on scroll-in.</div>
+      </div>
+
+      <!-- 16. type: writer -->
+      <div class="showcase-card">
+        <div class="sc-number">#16</div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <div style="overflow:hidden;white-space:nowrap;border-right:2px solid #06b6d4;animation:typeW 4s steps(22) infinite;font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#06b6d4;width:0" id="typeDemo">Design Lang is here.</div>
+          <style>@keyframes typeW{0%{width:0}60%{width:19ch}80%{width:19ch}100%{width:0}}</style>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">type: writer</div>
+        <div class="sc-code">type: writer(text: "Design Lang is here.", speed: 60ms)</div>
+        <div class="sc-desc">Typewriter effect — characters appear one by one, cursor blinks at end.</div>
+      </div>
+
+      <!-- 17. gesture: swipe -->
+      <div class="showcase-card">
+        <div class="sc-number">#17</div>
+        <div class="demo-box demo-glass" style="flex-direction:column;overflow:hidden;position:relative">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:#64748b;flex-direction:column;gap:4px">
+            <span>↔</span>
+            <span>Swipe left/right</span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">gesture: swipe</div>
+        <div class="sc-code">gesture: swipe(left: @dismiss, right: @reveal)</div>
+        <div class="sc-desc">Touch swipe gesture bindings — maps directions to lifecycle hooks.</div>
+      </div>
+
+      <!-- 18. gesture: longpress -->
+      <div class="showcase-card">
+        <div class="sc-number">#18</div>
+        <div class="demo-box demo-glass demo-tilt" style="cursor:pointer" id="longpressDemo" onclick="this.style.background='rgba(6,182,212,0.15)';setTimeout(function(){document.getElementById('longpressDemo').style.background=''},500)">
+          <span style="font-size:0.7rem;color:#94a3b8">🍃 Hold me (tap to simulate)</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">gesture: longpress</div>
+        <div class="sc-code">gesture: longpress(ms: 500, action: @menu)</div>
+        <div class="sc-desc">Long press detection with configurable timing + haptic feedback.</div>
+      </div>
+
+      <!-- 19. magnetic: attract -->
+      <div class="showcase-card">
+        <div class="sc-number">#19</div>
+        <div class="demo-box demo-glass" style="position:relative" id="magneticDemo" onmousemove="var r=this.getBoundingClientRect();var x=(event.clientX-r.left-r.width/2)*0.2;var y=(event.clientY-r.top-r.height/2)*0.2;this.querySelector('span').style.transform='translate('+x+'px,'+y+'px)'" onmouseleave="this.querySelector('span').style.transform=''">
+          <span style="transition:transform 0.4s;font-size:0.8rem;color:#06b6d4">🪄 Follow me</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">magnetic: attract</div>
+        <div class="sc-code">magnetic: attract(strength: 0.3, radius: 200px)</div>
+        <div class="sc-desc">Element follows cursor within attraction radius — zero latency pull.</div>
+      </div>
+
+      <!-- 20. variant: font -->
+      <div class="showcase-card">
+        <div class="sc-number">#20</div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,#06b6d4,#8b5cf6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variation-settings:'wght' 700,'wdth' 100">Aa Bb</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">variant: font</div>
+        <div class="sc-code">variant: font(axes: {wght: 400..700, wdth: 75..100})</div>
+        <div class="sc-desc">Variable font axes with range syntax — weight, width, italic in one decl.</div>
+      </div>
+
+      <!-- 21. placeholder: shimmer -->
+      <div class="showcase-card">
+        <div class="sc-number">#21</div>
+        <div class="demo-box" style="flex-direction:column;gap:6px;padding:16px;background:rgba(15,23,42,0.6)">
+          <div style="height:10px;width:70%;background:rgba(255,255,255,0.04);border-radius:4px;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);animation:shim 1.5s infinite"></div></div>
+          <div style="height:10px;width:50%;background:rgba(255,255,255,0.04);border-radius:4px;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);animation:shim 1.5s infinite;animation-delay:0.2s"></div></div>
+          <div style="height:10px;width:60%;background:rgba(255,255,255,0.04);border-radius:4px;position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);animation:shim 1.5s infinite;animation-delay:0.4s"></div></div>
+          <style>@keyframes shim{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}</style>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">placeholder: shimmer</div>
+        <div class="sc-code">placeholder: shimmer(base: #1e293b, highlight: #334155)</div>
+        <div class="sc-desc">Skeleton loading state with animated shimmer sweep across bars.</div>
+      </div>
+
+      <!-- 22. lazy: load -->
+      <div class="showcase-card">
+        <div class="sc-number">#22</div>
+        <div class="demo-box demo-glass">
+          <span style="font-size:0.7rem;color:#94a3b8">⏳ Loads when visible</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">lazy: load</div>
+        <div class="sc-code">lazy: load(rootMargin: 200px, placeholder: shimmer)</div>
+        <div class="sc-desc">Deferred loading triggered by IntersectionObserver. Shows shimmer until visible.</div>
+      </div>
+
+      <!-- 23. overflow: marquee -->
+      <div class="showcase-card">
+        <div class="sc-number">#23</div>
+        <div class="demo-box" style="flex-direction:column;overflow:hidden;white-space:nowrap;padding:0 8px">
+          <div style="display:inline-block;animation:marqueeText 6s linear infinite;font-size:0.85rem;color:#06b6d4;font-family:'JetBrains Mono',monospace">✦ Design Lang compiles to CSS + JS Runtime ✦</div>
+          <style>@keyframes marqueeText{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}</style>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">overflow: marquee</div>
+        <div class="sc-code">overflow: marquee(speed: 30s, direction: left, pause: hover)</div>
+        <div class="sc-desc">Auto-scrolling ticker tape — pauses on hover. Great for announcements.</div>
+      </div>
+
+      <!-- 24. observe: viewport -->
+      <div class="showcase-card">
+        <div class="sc-number">#24</div>
+        <div class="demo-box demo-glass" style="flex-direction:column" id="observeDemo">
+          <span style="font-size:0.7rem;color:#64748b">👁 Scroll to me</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">observe: viewport</div>
+        <div class="sc-code">observe: viewport(enter: @animate, once: true)</div>
+        <div class="sc-desc">IntersectionObserver to lifecycle — fires @animate when scrolled into view.</div>
+      </div>
+
+      <!-- 25. track: scroll -->
+      <div class="showcase-card">
+        <div class="sc-number">#25</div>
+        <div class="demo-box" style="flex-direction:column;gap:8px">
+          <div style="width:100%;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:67%;background:linear-gradient(90deg,#06b6d4,#8b5cf6);border-radius:3px"></div>
+          </div>
+          <span style="font-size:0.65rem;color:#64748b">Reading progress: 67%</span>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">track: scroll</div>
+        <div class="sc-code">track: scroll(progress: true, color: cyan, position: top)</div>
+        <div class="sc-desc">Fixed scroll progress bar — fills from 0% to 100% as you read the page.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>Design Lang v0.1 — 45 properties (20 original + 25 new) — MIT — Empire Creative</p>
+      <p style="margin-top:4px"><a href="https://github.com/santaclawone/design-lang" style="color:#06b6d4;text-decoration:none">GitHub repo →</a> &nbsp;·&nbsp; <a href="https://santaclawone.github.io/ds-studios-portfolio/" style="color:#06b6d4;text-decoration:none">DS Studios →</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Number counter animation
+(function() {
+  var el = document.getElementById('numberDemo');
+  if (!el) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var start = 0, end = 10000, duration = 1500, startTime = null;
+        function step(ts) {
+          if (!startTime) startTime = ts;
+          var progress = Math.min((ts - startTime) / duration, 1);
+          el.textContent = Math.round(start + (end - start) * progress).toLocaleString();
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  observer.observe(el);
+})();
+
+// Parallax on scroll
+(function() {
+  var el = document.getElementById('parallaxDemo');
+  if (!el) return;
+  window.addEventListener('scroll', function() {
+    var rect = el.getBoundingClientRect();
+    var visible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (visible) {
+      var offset = (window.innerHeight - rect.top) * 0.1;
+      el.style.transform = 'translateY(' + (-offset) + 'px)';
+    }
+  });
+})();
+</script>
+</body>
+</html>

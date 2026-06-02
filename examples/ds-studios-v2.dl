@@ -1,0 +1,83 @@
+// DS Studios — Complete Design Lang Components
+// Compiled to CSS + JS Runtime via `dl compile`
+
+element glass-nav {
+  surface: glass(blur: 20px)
+}
+
+element nav-link {
+  @hover: scale(amount: 1.05)
+}
+
+element gradient-hero {
+  typography: gradient(linear, [#a3d977, #7aa36f, #8bc45a])
+  @birth: fade-in(duration: 0.8s)
+}
+
+element hero-subtitle {
+  @birth: fade-in(duration: 1s)
+}
+
+element hero-cta {
+  @birth: fade-in(duration: 1.2s)
+}
+
+element cta-primary {
+  surface: glass(blur: 8px)
+  physics: spring(stiffness: 280, damping: 22, mass: 8g)
+  touch_targets: 52px
+  @hover: scale(amount: 1.05)
+  @press: scale(amount: 0.96)
+}
+
+element cta-secondary {
+  physics: spring(stiffness: 200, damping: 18, mass: 10g)
+  @hover: scale(amount: 1.04)
+  @press: scale(amount: 0.97)
+}
+
+element feature-card {
+  surface: glass(blur: 16px)
+  light: spotlight(radius: 250px, intensity: 0.12)
+  @hover: scale(amount: 1.03)
+}
+
+element portfolio-card {
+  morph: rounded(radius: 20px)
+  surface: glass(blur: 12px)
+  light: spotlight(radius: 200px, intensity: 0.18)
+  @hover: scale(amount: 1.02)
+}
+
+element service-card {
+  surface: glass(blur: 14px)
+  light: spotlight(radius: 180px, intensity: 0.1)
+  @hover: scale(amount: 1.03)
+}
+
+element testimonial-card {
+  surface: glass(blur: 12px)
+}
+
+element input-glass {
+  surface: glass(blur: 6px)
+  focus: auto(style: glow, width: 2px)
+  touch_targets: 48px
+}
+
+element textarea-glass {
+  surface: glass(blur: 6px)
+  focus: auto(style: glow, width: 2px)
+}
+
+element social-icon {
+  @hover: scale(amount: 1.2)
+}
+
+element section-title {
+  @birth: fade-in(duration: 0.6s)
+}
+
+element dl-badge {
+  surface: glass(blur: 8px)
+}

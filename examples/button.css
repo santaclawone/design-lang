@@ -1,0 +1,47 @@
+/* ─── Design Lang Compiled CSS ─── */
+
+@keyframes dl-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dl-primary-button {
+  background: linear-gradient(135deg, cyan, purple);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  --dl-stiffness: 180;
+  --dl-damping: 20;
+  --dl-mass: 12;
+  transition: transform 0.15s ease;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+  animation: dl-fade-in 0.5s ease-out both;
+}
+
+.dl-primary-button:hover {
+  --dl-physics-hover: 1;
+}
+
+.dl-primary-button:hover {
+  transform: scale(1.04);
+}
+
+.dl-primary-button:active {
+  transform: scale(0.95);
+}

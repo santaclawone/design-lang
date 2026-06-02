@@ -1,0 +1,223 @@
+/* ─── Design Lang Compiled CSS ─── */
+
+.dl-glass-nav {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+}
+
+.dl-nav-link:hover {
+  transform: scale(1.04);
+}
+
+@keyframes dl-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dl-gradient-heading {
+  background: linear-gradient(135deg, #a3d977, #7aa36f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: dl-fade-in 0.6s ease-out both;
+}
+
+@keyframes dl-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dl-hero-subtitle {
+  animation: dl-fade-in 0.8s ease-out both;
+}
+
+.dl-cta-button {
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+  --dl-stiffness: 200;
+  --dl-damping: 20;
+  --dl-mass: 10;
+  transition: transform 0.15s ease;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dl-cta-button:hover {
+  --dl-physics-hover: 1;
+}
+
+.dl-cta-button:hover {
+  transform: scale(1.04);
+}
+
+.dl-cta-button:active {
+  transform: scale(0.97);
+}
+
+.dl-cta-button-secondary {
+  min-width: 48px;
+  min-height: 48px;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  --dl-stiffness: 200;
+  --dl-damping: 20;
+  --dl-mass: 10;
+  transition: transform 0.15s ease;
+  will-change: transform;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dl-cta-button-secondary:hover {
+  --dl-physics-hover: 1;
+}
+
+.dl-cta-button-secondary:hover {
+  transform: scale(1.04);
+}
+
+.dl-cta-button-secondary:active {
+  transform: scale(0.97);
+}
+
+.dl-feature-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+.dl-feature-icon {
+  border-radius: 12px;
+  transition: border-radius 0.3s ease;
+}
+
+.dl-feature-icon:hover {
+  border-radius: 50%;
+}
+
+.dl-portfolio-card {
+  border-radius: 24px;
+  transition: border-radius 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dl-portfolio-card:hover {
+  border-radius: 50%;
+}
+
+.dl-portfolio-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.15) 0%, transparent 150px);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+.dl-services-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+.dl-testimonials-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+.dl-testimonial-avatar {
+  border-radius: 50%;
+  transition: border-radius 0.3s ease;
+}
+
+.dl-testimonial-avatar:hover {
+  border-radius: 50%;
+}
+
+.dl-input-field {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.dl-textarea-field {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.dl-social-link:hover {
+  transform: scale(1.15);
+}
+
+.dl-footer-link:hover {
+  transform: scale(1.04);
+}
+
+@keyframes dl-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dl-section-heading {
+  background: linear-gradient(135deg, #a3d977, #7aa36f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: dl-fade-in 0.6s ease-out both;
+}

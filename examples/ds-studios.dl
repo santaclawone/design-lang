@@ -1,0 +1,95 @@
+// DS Studios - Design Lang Component Definitions
+// Brand colors: primary #a3d977 (green), secondary #7aa36f (muted green)
+// Empire 2026 aesthetic with DS Studios green accents
+
+// === NAVIGATION ===
+element glass-nav {
+  surface: glass(blur: 12px)
+  touch_targets: 48px
+}
+
+element nav-link {
+  @hover: scale(amount: 1.04)
+}
+
+// === HERO ===
+element gradient-heading {
+  typography: gradient(linear, [#a3d977, #7aa36f])
+  @birth: fade-in(duration: 0.6s)
+}
+
+element hero-subtitle {
+  @birth: fade-in(duration: 0.8s)
+}
+
+// === BUTTONS ===
+element cta-button {
+  touch_targets: 48px
+  physics: spring(stiffness: 200, damping: 20, mass: 10g)
+  @hover: scale(amount: 1.04)
+  @press: scale(amount: 0.97)
+}
+
+element cta-button-secondary {
+  touch_targets: 48px
+  surface: glass(blur: 6px)
+  physics: spring(stiffness: 200, damping: 20, mass: 10g)
+  @hover: scale(amount: 1.04)
+  @press: scale(amount: 0.97)
+}
+
+// === FEATURE CARDS ===
+element feature-card {
+  surface: glass(blur: 8px)
+}
+
+element feature-icon {
+  morph: rounded(radius: 12px)
+}
+
+// === PORTFOLIO ===
+element portfolio-card {
+  morph: rounded(radius: 24px)
+  light: spotlight(radius: 150px, intensity: 0.15)
+}
+
+// === SERVICES ===
+element services-card {
+  surface: glass(blur: 6px)
+}
+
+// === TESTIMONIALS ===
+element testimonials-card {
+  surface: glass(blur: 6px)
+}
+
+element testimonial-avatar {
+  morph: rounded(radius: 50%)
+}
+
+// === CONTACT ===
+element input-field {
+  surface: glass(blur: 4px)
+  focus: auto(style: glow)
+  touch_targets: 44px
+}
+
+element textarea-field {
+  surface: glass(blur: 4px)
+  focus: auto(style: glow)
+}
+
+// === FOOTER ===
+element social-link {
+  @hover: scale(amount: 1.15)
+}
+
+element footer-link {
+  @hover: scale(amount: 1.04)
+}
+
+// === SECTION ===
+element section-heading {
+  typography: gradient(linear, [#a3d977, #7aa36f])
+  @birth: fade-in(duration: 0.6s)
+}

@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS Studios — Web Design & Development, Ireland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Space+Grotesk:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<style>
+  /* ========================================
+     DS Studios — Built with Design Lang ✦
+     Empire 2026 Design Aesthetic
+     ======================================== */
+
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #05080e;
+    color: #f1f5f9;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  /* ─── GRAIN TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  /* ─── AMBIENT GLOW BACKGROUND ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -30%; left: -10%;
+    width: 120%; height: 120%;
+    pointer-events: none;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 800px 600px at 20% 20%, rgba(163, 217, 119, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 600px 800px at 80% 80%, rgba(122, 163, 111, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 400px 400px at 50% 50%, rgba(6, 182, 212, 0.04) 0%, transparent 60%);
+    transition: background 0.4s ease;
+  }
+
+  /* ─── THEME TOGGLE ─── */
+  [data-theme="light"] body {
+    background: #f8fafc;
+    color: #0f172a;
+  }
+  [data-theme="light"] body::after {
+    background:
+      radial-gradient(ellipse 800px 600px at 20% 20%, rgba(163, 217, 119, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 600px 800px at 80% 80%, rgba(122, 163, 111, 0.08) 0%, transparent 60%);
+  }
+  [data-theme="light"] .dl-glass-nav,
+  [data-theme="light"] .dl-feature-card,
+  [data-theme="light"] .dl-services-card,
+  [data-theme="light"] .dl-testimonials-card,
+  [data-theme="light"] .dl-input-field,
+  [data-theme="light"] .dl-textarea-field,
+  [data-theme="light"] .theme-toggle {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* ─── CONTAINER ─── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: calc(100% - 48px);
+    max-width: 1200px;
+  }
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #a3d977;
+  }
+  .logo span { color: #f1f5f9; }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  .nav-links a:hover { color: #a3d977; }
+  .theme-toggle {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    color: #f1f5f9;
+  }
+  .theme-toggle:hover { transform: scale(1.1); border-color: #a3d977; }
+  [data-theme="light"] .theme-toggle { color: #0f172a; }
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #f1f5f9;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  [data-theme="light"] .mobile-menu-btn { color: #0f172a; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    max-width: 900px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .highlight {
+    background: linear-gradient(135deg, #a3d977, #7aa36f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .hero p {
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    color: #94a3b8;
+    max-width: 600px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: #a3d977;
+    color: #05080e;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  .btn-primary:hover { background: #8bc45a; }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f1f5f9;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  .btn-secondary:hover {
+    border-color: #a3d977;
+    color: #a3d977;
+  }
+  [data-theme="light"] .btn-secondary {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+  }
+  [data-theme="light"] .btn-secondary:hover {
+    border-color: #a3d977;
+    color: #7aa36f;
+  }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: pulse-down 2s ease-in-out infinite;
+  }
+  .scroll-indicator .arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid #64748b;
+    border-bottom: 2px solid #64748b;
+    transform: rotate(45deg);
+  }
+  @keyframes pulse-down {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+    50% { transform: translateX(-50%) translateY(6px); opacity: 1; }
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 100px 0;
+    position: relative;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #a3d977;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #a3d977, #7aa36f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .section-subtitle {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  /* ─── FEATURES ─── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .feature-card {
+    padding: 36px;
+    border-radius: 24px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(163, 217, 119, 0.3);
+  }
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(163, 217, 119, 0.1);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    transition: border-radius 0.3s ease;
+  }
+  .feature-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #f1f5f9;
+    letter-spacing: -0.02em;
+  }
+  .feature-card p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  [data-theme="light"] .feature-card h3 { color: #0f172a; }
+
+  /* ─── PORTFOLIO ─── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .portfolio-item {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    background: linear-gradient(135deg, #1a1a2e, #0f172a);
+    transition: transform 0.4s ease;
+  }
+  .portfolio-item:hover { transform: scale(1.02); }
+  .portfolio-item .placeholder-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    opacity: 0.15;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(163, 217, 119, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 60%, rgba(122, 163, 111, 0.1) 0%, transparent 50%);
+    transition: opacity 0.4s ease;
+  }
+  .portfolio-item:hover .placeholder-img { opacity: 0.3; }
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(5, 8, 14, 0.9) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+  .portfolio-overlay h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 4px;
+  }
+  .portfolio-overlay p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+  .portfolio-overlay .tag {
+    display: inline-block;
+    background: rgba(163, 217, 119, 0.15);
+    color: #a3d977;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 12px;
+    align-self: flex-start;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .service-card {
+    padding: 36px;
+    border-radius: 24px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(163, 217, 119, 0.3);
+  }
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(163, 217, 119, 0.1);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+  }
+  .service-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #f1f5f9;
+    letter-spacing: -0.02em;
+  }
+  .service-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .service-card .service-list {
+    list-style: none;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .service-card .service-list li {
+    font-size: 0.85rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .service-card .service-list li::before {
+    content: '→';
+    color: #a3d977;
+    font-weight: 600;
+  }
+  [data-theme="light"] .service-card h3 { color: #0f172a; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .testimonial-card {
+    padding: 32px;
+    border-radius: 24px;
+    transition: border-color 0.3s ease;
+  }
+  .testimonial-card:hover { border-color: rgba(163, 217, 119, 0.3); }
+  .testimonial-content {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .testimonial-content::before {
+    content: '"';
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    color: #a3d977;
+    line-height: 0;
+    vertical-align: -0.4em;
+    margin-right: 4px;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a3d977, #7aa36f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #05080e;
+  }
+  .testimonial-info h5 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+  .testimonial-info span {
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+  [data-theme="light"] .testimonial-content { color: #334155; }
+  [data-theme="light"] .testimonial-info h5 { color: #0f172a; }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 48px;
+    align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #f1f5f9;
+    letter-spacing: -0.02em;
+  }
+  .contact-info p {
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+  .contact-detail .icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(163, 217, 119, 0.1);
+    border-radius: 10px;
+    font-size: 1.1rem;
+  }
+  [data-theme="light"] .contact-info h3 { color: #0f172a; }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #94a3b8;
+  }
+  .form-group input,
+  .form-group textarea {
+    padding: 14px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #f1f5f9;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    min-height: 48px;
+  }
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #a3d977;
+    box-shadow: 0 0 0 3px rgba(163, 217, 119, 0.15);
+  }
+  [data-theme="light"] .form-group input,
+  [data-theme="light"] .form-group textarea {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #0f172a;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 60px 0 40px;
+    margin-top: 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  .footer-brand p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-top: 12px;
+    max-width: 360px;
+  }
+  .footer-col h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #f1f5f9;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-col a {
+    text-decoration: none;
+    color: #64748b;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  .footer-col a:hover { color: #a3d977; }
+  .footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .footer-social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #64748b;
+    transition: all 0.3s ease;
+  }
+  .footer-social a:hover {
+    transform: scale(1.15);
+    border-color: #a3d977;
+    color: #a3d977;
+    background: rgba(163, 217, 119, 0.1);
+  }
+  [data-theme="light"] .footer-col h5 { color: #0f172a; }
+  [data-theme="light"] footer { border-color: rgba(0, 0, 0, 0.06); }
+
+  .footer-bottom {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: #475569;
+  }
+  .dl-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #a3d977;
+    background: rgba(163, 217, 119, 0.08);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(163, 217, 119, 0.15);
+  }
+  [data-theme="light"] .footer-bottom { border-color: rgba(0, 0, 0, 0.04); }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(5, 8, 14, 0.95);
+      backdrop-filter: blur(16px);
+      padding: 20px;
+      border-radius: 0 0 16px 16px;
+      gap: 16px;
+    }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-grid > :first-child { grid-column: 1 / -1; }
+    .hero { padding: 100px 16px 60px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .features-grid, .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+
+  /* ─── DESIGN LANG COMPILED CSS ─── */
+
+  @keyframes dl-fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .dl-glass-nav {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    min-width: 48px;
+    min-height: 48px;
+    cursor: pointer;
+  }
+
+  .dl-nav-link:hover { transform: scale(1.04); }
+
+  .dl-gradient-heading {
+    background: linear-gradient(135deg, #a3d977, #7aa36f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: dl-fade-in 0.6s ease-out both;
+  }
+
+  .dl-hero-subtitle {
+    animation: dl-fade-in 0.8s ease-out both;
+  }
+
+  .dl-cta-button {
+    min-width: 48px;
+    min-height: 48px;
+    cursor: pointer;
+    --dl-stiffness: 200;
+    --dl-damping: 20;
+    --dl-mass: 10;
+    transition: transform 0.15s ease;
+    will-change: transform;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .dl-cta-button:hover { --dl-physics-hover: 1; }
+  .dl-cta-button:hover { transform: scale(1.04); }
+  .dl-cta-button:active { transform: scale(0.97); }
+
+  .dl-cta-button-secondary {
+    min-width: 48px;
+    min-height: 48px;
+    cursor: pointer;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    --dl-stiffness: 200;
+    --dl-damping: 20;
+    --dl-mass: 10;
+    transition: transform 0.15s ease;
+    will-change: transform;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .dl-cta-button-secondary:hover { --dl-physics-hover: 1; }
+  .dl-cta-button-secondary:hover { transform: scale(1.04); }
+  .dl-cta-button-secondary:active { transform: scale(0.97); }
+
+  .dl-feature-card {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+  }
+
+  .dl-feature-icon {
+    border-radius: 12px;
+    transition: border-radius 0.3s ease;
+  }
+
+  .dl-feature-icon:hover { border-radius: 50%; }
+
+  .dl-portfolio-card {
+    border-radius: 24px;
+    transition: border-radius 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dl-portfolio-card:hover { border-radius: 50%; }
+
+  .dl-portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.15) 0%, transparent 150px);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  .dl-services-card {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+  }
+
+  .dl-testimonials-card {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+  }
+
+  .dl-testimonial-avatar {
+    border-radius: 50%;
+    transition: border-radius 0.3s ease;
+  }
+
+  .dl-testimonial-avatar:hover { border-radius: 50%; }
+
+  .dl-input-field {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+    min-width: 44px;
+    min-height: 44px;
+    cursor: pointer;
+  }
+
+  .dl-textarea-field {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .dl-social-link:hover { transform: scale(1.15); }
+  .dl-footer-link:hover { transform: scale(1.04); }
+
+  .dl-section-heading {
+    background: linear-gradient(135deg, #a3d977, #7aa36f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: dl-fade-in 0.6s ease-out both;
+  }
+</style>
+</head>
+<body>
+  <!-- ════════════════════════════════════
+       NAVIGATION
+       ════════════════════════════════════ -->
+  <nav>
+    <div class="dl-glass-nav nav-content">
+      <div class="logo">DS<span> Studios</span></div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features" class="dl-nav-link">Features</a></li>
+        <li><a href="#portfolio" class="dl-nav-link">Work</a></li>
+        <li><a href="#services" class="dl-nav-link">Services</a></li>
+        <li><a href="#testimonials" class="dl-nav-link">Testimonials</a></li>
+        <li><a href="#contact" class="dl-nav-link">Contact</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        </li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════
+       HERO
+       ════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <h1>
+      Crafting <span class="highlight">Digital</span><br>
+      Experiences That Matter
+    </h1>
+    <p class="dl-hero-subtitle">
+      We design and build modern web experiences for brands that refuse to blend in.
+      Based in Ireland, serving clients worldwide.
+    </p>
+    <div class="hero-cta">
+      <a href="#portfolio" class="btn-primary dl-cta-button">View Our Work</a>
+      <a href="#contact" class="btn-secondary dl-cta-button-secondary">Get in Touch</a>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       FEATURES
+       ════════════════════════════════════ -->
+  <section id="features">
+    <div class="container">
+      <div class="fade-in-section">
+        <p class="section-label">Why Choose Us</p>
+        <h2 class="section-title dl-section-heading">Built Different,<br>Built Better</h2>
+        <p class="section-subtitle">
+          Every pixel, every interaction, every line of code has a purpose.
+          We don't just build websites — we craft digital experiences.
+        </p>
+      </div>
+      <div class="features-grid fade-in-section">
+        <div class="dl-feature-card feature-card">
+          <div class="feature-icon dl-feature-icon">⚡</div>
+          <h3>Lightning Fast</h3>
+          <p>Sub-second load times with optimized performance. Every millisecond counts, and we make every one of them work for you.</p>
+        </div>
+        <div class="dl-feature-card feature-card">
+          <div class="feature-icon dl-feature-icon">🎯</div>
+          <h3>Pixel-Perfect</h3>
+          <p>Design systems with obsessive attention to detail. Every component looks as intended across every device and screen size.</p>
+        </div>
+        <div class="dl-feature-card feature-card">
+          <div class="feature-icon dl-feature-icon">✨</div>
+          <h3>Clean Code</h3>
+          <p>Maintainable, scalable, and accessible codebases. Built to grow with your business, not be replaced by it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       PORTFOLIO
+       ════════════════════════════════════ -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="fade-in-section">
+        <p class="section-label">Our Work</p>
+        <h2 class="section-title dl-section-heading">Selected Projects</h2>
+        <p class="section-subtitle">
+          A showcase of brands we've helped bring to life through thoughtful design
+          and meticulous development.
+        </p>
+      </div>
+      <div class="portfolio-grid fade-in-section">
+        <div class="portfolio-item dl-portfolio-card">
+          <div class="placeholder-img">🌿</div>
+          <div class="portfolio-overlay">
+            <h4>GreenLeaf Organics</h4>
+            <p>E-commerce & brand experience</p>
+            <span class="tag">Shopify + Next.js</span>
+          </div>
+        </div>
+        <div class="portfolio-item dl-portfolio-card">
+          <div class="placeholder-img">🏦</div>
+          <div class="portfolio-overlay">
+            <h4>Meridian Finance</h4>
+            <p>Fintech dashboard & analytics</p>
+            <span class="tag">React + D3</span>
+          </div>
+        </div>
+        <div class="portfolio-item dl-portfolio-card">
+          <div class="placeholder-img">🎙️</div>
+          <div class="portfolio-overlay">
+            <h4>Pulse Podcast</h4>
+            <p>Media platform & community</p>
+            <span class="tag">Next.js + Supabase</span>
+          </div>
+        </div>
+        <div class="portfolio-item dl-portfolio-card">
+          <div class="placeholder-img">🍽️</div>
+          <div class="portfolio-overlay">
+            <h4>PlateLogic</h4>
+            <p>AI-powered meal planning</p>
+            <span class="tag">React + Python</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       SERVICES
+       ════════════════════════════════════ -->
+  <section id="services">
+    <div class="container">
+      <div class="fade-in-section">
+        <p class="section-label">What We Do</p>
+        <h2 class="section-title dl-section-heading">Services</h2>
+        <p class="section-subtitle">
+          From concept to deployment, we provide end-to-end design and development
+          services tailored to your brand's needs.
+        </p>
+      </div>
+      <div class="services-grid fade-in-section">
+        <div class="dl-services-card service-card">
+          <div class="service-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>Research-driven interfaces that balance beauty with usability. Wireframes, prototypes, and pixel-perfect designs.</p>
+          <ul class="service-list">
+            <li>User research & personas</li>
+            <li>Interactive prototypes</li>
+            <li>Design systems</li>
+            <li>Accessibility audits</li>
+          </ul>
+        </div>
+        <div class="dl-services-card service-card">
+          <div class="service-icon">⚛️</div>
+          <h3>Front-End Development</h3>
+          <p>Modern, performant front-ends built with the latest technologies. Responsive, accessible, and blazing fast.</p>
+          <ul class="service-list">
+            <li>React / Next.js / Vue</li>
+            <li>TypeScript & modern CSS</li>
+            <li>Animation & micro-interactions</li>
+            <li>Progressive web apps</li>
+          </ul>
+        </div>
+        <div class="dl-services-card service-card">
+          <div class="service-icon">📈</div>
+          <h3>Performance & SEO</h3>
+          <p>Technical optimization that drives results. Fast load times, search visibility, and conversion-focused architecture.</p>
+          <ul class="service-list">
+            <li>Core Web Vitals optimization</li>
+            <li>Technical SEO audits</li>
+            <li>Performance budgets</li>
+            <li>Analytics integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       TESTIMONIALS
+       ════════════════════════════════════ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="fade-in-section">
+        <p class="section-label">Kind Words</p>
+        <h2 class="section-title dl-section-heading">What Clients Say</h2>
+        <p class="section-subtitle">
+          Don't take our word for it. Here's what it's like working with DS Studios.
+        </p>
+      </div>
+      <div class="testimonials-grid fade-in-section">
+        <div class="dl-testimonials-card testimonial-card">
+          <div class="testimonial-content">
+            DS Studios transformed our online presence completely. The attention to detail and focus on performance has genuinely improved our conversion rates. They're not just developers — they're partners.
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar dl-testimonial-avatar">SK</div>
+            <div class="testimonial-info">
+              <h5>Sarah Kelly</h5>
+              <span>CEO, GreenLeaf Organics</span>
+            </div>
+          </div>
+        </div>
+        <div class="dl-testimonials-card testimonial-card">
+          <div class="testimonial-content">
+            Working with this team was an absolute pleasure. They understood our vision from day one and delivered beyond expectations. The dashboard they built is used by our entire team daily.
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar dl-testimonial-avatar">MR</div>
+            <div class="testimonial-info">
+              <h5>Michael Ryan</h5>
+              <span>CTO, Meridian Finance</span>
+            </div>
+          </div>
+        </div>
+        <div class="dl-testimonials-card testimonial-card">
+          <div class="testimonial-content">
+            We needed a platform that could scale, and DS Studios delivered exactly that. The architecture they built handles our growth effortlessly. Plus, the design is gorgeous — our users love it.
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar dl-testimonial-avatar">AO</div>
+            <div class="testimonial-info">
+              <h5>Aoife O'Brien</h5>
+              <span>Founder, Pulse Podcast</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       CONTACT
+       ════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="fade-in-section">
+        <p class="section-label">Get in Touch</p>
+        <h2 class="section-title dl-section-heading">Let's Build Something</h2>
+        <p class="section-subtitle">
+          Have a project in mind? We'd love to hear about it. Drop us a message and
+          we'll get back to you within 24 hours.
+        </p>
+      </div>
+      <div class="contact-grid fade-in-section">
+        <div class="contact-info">
+          <h3>Contact Details</h3>
+          <p>
+            Based in Dublin, Ireland. Available for remote collaboration worldwide.
+          </p>
+          <div class="contact-detail">
+            <div class="icon">📧</div>
+            <span>hello@dsstudios.ie</span>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">📱</div>
+            <span>+353 1 234 5678</span>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">📍</div>
+            <span>Dublin, Ireland</span>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="return handleContact(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" class="dl-input-field" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" class="dl-input-field" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us about your project..." class="dl-textarea-field" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary dl-cta-button" style="align-self: flex-start;">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       DESIGN LANG SHOWCASE
+       ════════════════════════════════════ -->
+  <section id="source" style="padding: 80px 0; background: rgba(163, 217, 119, 0.02); border-top: 1px solid rgba(163, 217, 119, 0.08); border-bottom: 1px solid rgba(163, 217, 119, 0.08);">
+    <div class="container" style="max-width: 900px;">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(163, 217, 119, 0.1); border: 1px solid rgba(163, 217, 119, 0.2); padding: 6px 16px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #a3d977; font-family: 'JetBrains Mono', monospace; margin-bottom: 16px;">
+          ✦ Design Lang Source
+        </div>
+        <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -0.02em; color: #f1f5f9; margin-bottom: 12px;">Built with Intent, Not Hacks</h2>
+        <p style="color: #94a3b8; font-size: 0.95rem; max-width: 600px; margin: 0 auto;">
+          Every component on this page was defined in Design Lang — a declarative language that compiles to CSS + JS.
+          No manual media queries. No third-party animation libraries. No accessibility audits.
+        </p>
+      </div>
+
+      <div style="background: #05080e; border: 1px solid rgba(163, 217, 119, 0.12); border-radius: 16px; overflow: hidden;">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(163, 217, 119, 0.08);">
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F56;"></span>
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E;"></span>
+          <span style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F;"></span>
+          <span style="font-size: 0.7rem; color: #64748b; margin-left: 8px; font-family: 'JetBrains Mono', monospace;">ds-studios.dl</span>
+          <span style="margin-left: auto; font-size: 0.65rem; color: #a3d977; font-family: 'JetBrains Mono', monospace; background: rgba(163, 217, 119, 0.1); padding: 2px 8px; border-radius: 4px;">8 elements</span>
+        </div>
+        <pre style="padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.7; overflow-x: auto; color: #94a3b8; tab-size: 2; white-space: pre; margin: 0;"><span style="color: #64748b; font-style: italic;">// DS Studios — Design Lang Components</span>
+
+<span style="color: #06b6d4;">element</span> glass-nav {
+  <span style="color: #06b6d4;">surface</span>: <span style="color: #c084fc;">glass</span>(<span style="color: #f472b6;">blur</span>: <span style="color: #fbbf24;">12</span><span style="color: #94a3b8;">px</span>)
+}
+
+<span style="color: #06b6d4;">element</span> gradient-heading {
+  <span style="color: #06b6d4;">typography</span>: <span style="color: #c084fc;">gradient</span>(<span style="color: #f472b6;">linear</span>, [<span style="color: #34d399;">#a3d977</span>, <span style="color: #34d399;">#7aa36f</span>])
+  <span style="color: #f472b6;">@birth</span>: <span style="color: #c084fc;">fade-in</span>(<span style="color: #f472b6;">duration</span>: <span style="color: #fbbf24;">0.6</span><span style="color: #94a3b8;">s</span>)
+}
+
+<span style="color: #06b6d4;">element</span> feature-card {
+  <span style="color: #06b6d4;">surface</span>: <span style="color: #c084fc;">glass</span>(<span style="color: #f472b6;">blur</span>: <span style="color: #fbbf24;">8</span><span style="color: #94a3b8;">px</span>)
+}
+
+<span style="color: #06b6d4;">element</span> cta-button {
+  <span style="color: #06b6d4;">physics</span>: <span style="color: #c084fc;">spring</span>(<span style="color: #f472b6;">stiffness</span>: <span style="color: #fbbf24;">200</span>, <span style="color: #f472b6;">damping</span>: <span style="color: #fbbf24;">20</span>, <span style="color: #f472b6;">mass</span>: <span style="color: #fbbf24;">10</span><span style="color: #94a3b8;">g</span>)
+  <span style="color: #f472b6;">@hover</span>: <span style="color: #c084fc;">scale</span>(<span style="color: #f472b6;">amount</span>: <span style="color: #fbbf24;">1.04</span>)
+  <span style="color: #f472b6;">@press</span>: <span style="color: #c084fc;">scale</span>(<span style="color: #f472b6;">amount</span>: <span style="color: #fbbf24;">0.97</span>)
+}
+
+<span style="color: #06b6d4;">element</span> portfolio-card {
+  <span style="color: #06b6d4;">morph</span>: <span style="color: #c084fc;">rounded</span>(<span style="color: #f472b6;">radius</span>: <span style="color: #fbbf24;">24</span><span style="color: #94a3b8;">px</span>)
+  <span style="color: #06b6d4;">light</span>: <span style="color: #c084fc;">spotlight</span>(<span style="color: #f472b6;">radius</span>: <span style="color: #fbbf24;">150</span><span style="color: #94a3b8;">px</span>, <span style="color: #f472b6;">intensity</span>: <span style="color: #fbbf24;">0.15</span>)
+}
+
+<span style="color: #06b6d4;">element</span> testimonial-card {
+  <span style="color: #06b6d4;">surface</span>: <span style="color: #c084fc;">glass</span>(<span style="color: #f472b6;">blur</span>: <span style="color: #fbbf24;">6</span><span style="color: #94a3b8;">px</span>)
+}
+
+<span style="color: #06b6d4;">element</span> input-field {
+  <span style="color: #06b6d4;">surface</span>: <span style="color: #c084fc;">glass</span>(<span style="color: #f472b6;">blur</span>: <span style="color: #fbbf24;">4</span><span style="color: #94a3b8;">px</span>)
+  <span style="color: #06b6d4;">focus</span>: <span style="color: #c084fc;">auto</span>(<span style="color: #f472b6;">style</span>: <span style="color: #34d399;">glow</span>)
+}</pre>
+        <div style="padding: 12px 20px; background: rgba(163, 217, 119, 0.04); border-top: 1px solid rgba(163, 217, 119, 0.08); display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <span style="font-size: 0.75rem; color: #94a3b8;">⚡ Compiled to CSS + JS Runtime</span>
+          <span style="font-size: 0.75rem; color: #94a3b8;">✦ No external dependencies</span>
+          <span style="font-size: 0.75rem; color: #94a3b8;">✦ No animation libraries</span>
+          <a href="https://santaclawone.github.io/design-lang/" style="margin-left: auto; font-size: 0.75rem; color: #a3d977; text-decoration: none;">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">DS<span> Studios</span></div>
+          <p>
+            We design and build modern digital experiences for brands that refuse to blend in.
+            Based in Dublin, Ireland. 🌿
+          </p>
+          <div class="footer-social">
+            <a href="#" class="dl-social-link" aria-label="GitHub">🐙</a>
+            <a href="#" class="dl-social-link" aria-label="Dribbble">🏀</a>
+            <a href="#" class="dl-social-link" aria-label="Twitter">🐦</a>
+            <a href="#" class="dl-social-link" aria-label="LinkedIn">💼</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#" class="dl-footer-link">UI/UX Design</a></li>
+            <li><a href="#" class="dl-footer-link">Web Development</a></li>
+            <li><a href="#" class="dl-footer-link">Performance</a></li>
+            <li><a href="#" class="dl-footer-link">Consulting</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#" class="dl-footer-link">About</a></li>
+            <li><a href="#" class="dl-footer-link">Process</a></li>
+            <li><a href="#" class="dl-footer-link">Blog</a></li>
+            <li><a href="#" class="dl-footer-link">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#" class="dl-footer-link">Privacy</a></li>
+            <li><a href="#" class="dl-footer-link">Terms</a></li>
+            <li><a href="#" class="dl-footer-link">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DS Studios. All rights reserved. Made in Ireland 🇮🇪</p>
+        <span class="dl-badge">✦ Built with Design Lang</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════
+       DESIGN LANG RUNTIME
+       ════════════════════════════════════ -->
+  <script>
+    /* ─── Design Lang Runtime ─── */
+    if (typeof DesignLang === 'undefined') {
+      window.DesignLang = {};
+
+      // Spring physics solver
+      DesignLang.spring = function(selector, params) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        const { stiffness = 180, damping = 20, mass = 0.012 } = params;
+        let vx = 0;
+        let target = 1;
+        let current = 1;
+
+        el.addEventListener('mouseenter', () => { target = 1.04; });
+        el.addEventListener('mouseleave', () => { target = 1; });
+        el.addEventListener('mousedown', () => { target = 0.95; });
+        el.addEventListener('mouseup', () => { target = 1.04; });
+
+        function tick() {
+          const force = stiffness * (target - current);
+          const damp = damping * vx;
+          const accel = (force - damp) / mass;
+          vx += accel * 0.016;
+          current += vx * 0.016;
+          el.style.transform = 'scale(' + current + ')';
+          if (Math.abs(target - current) > 0.001 || Math.abs(vx) > 0.001) {
+            requestAnimationFrame(tick);
+          }
+        }
+
+        el.addEventListener('mouseenter', () => requestAnimationFrame(tick));
+        el.addEventListener('mousedown', () => requestAnimationFrame(tick));
+      };
+
+      // Haptic feedback
+      DesignLang.haptic = function(selector, params) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        el.addEventListener('click', () => {
+          if (navigator.vibrate) navigator.vibrate(params.force || 25);
+        });
+      };
+    }
+
+    /* ─── Component Initialization ─── */
+    DesignLang.spring('.dl-cta-button', { stiffness: 200, damping: 20, mass: 0.01 });
+    DesignLang.spring('.dl-cta-button-secondary', { stiffness: 200, damping: 20, mass: 0.01 });
+
+    /* ════════════════════════════════════
+       SITE INTERACTIONS
+       ════════════════════════════════════ */
+
+    // ── Theme Toggle ──
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('ds-theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('ds-theme', next);
+      themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
+    });
+
+    // ── Mobile Menu ──
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // ── Scroll Animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+
+    // ── Contact Form ──
+    function handleContact(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.textContent;
+      btn.textContent = '✓ Sent!';
+      btn.style.background = '#10b981';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        e.target.reset();
+      }, 2500);
+      return false;
+    }
+
+    // ── Smooth Nav Scroll ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+  <!-- ════════════════════════════════════
+       DESIGN LANG SOURCE (reference display)
+       ════════════════════════════════════ -->
+  <!--
+  This page was built using Design Lang ✦ components.
+  Compiled from ds-studios.dl → ds-studios.css + ds-studios.runtime.js
+
+  Elements used:
+    glass-nav, nav-link, gradient-heading, hero-subtitle,
+    cta-button, cta-button-secondary, feature-card, feature-icon,
+    portfolio-card, services-card, testimonials-card,
+    testimonial-avatar, input-field, textarea-field,
+    social-link, footer-link, section-heading
+  -->
+</body>
+</html>
