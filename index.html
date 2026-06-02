@@ -31,6 +31,7 @@ tr:hover td{background:rgba(255,255,255,0.01)}
 .code{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:#c084fc}
 .desc{color:#94a3b8;font-size:0.8rem}
 .tag-new{display:inline-block;font-size:0.55rem;font-family:'JetBrains Mono',monospace;background:#a3d977;color:#05080e;padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:600;vertical-align:middle}
+.tag-new-plus{display:inline-block;font-size:0.55rem;font-family:'JetBrains Mono',monospace;background:linear-gradient(135deg,#a3d977,#06b6d4);color:#05080e;padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:600;vertical-align:middle}
 .tag-v1{display:inline-block;font-size:0.55rem;font-family:'JetBrains Mono',monospace;background:rgba(6,182,212,0.15);color:#06b6d4;padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:600;vertical-align:middle}
 
 .category-header td{padding:16px;background:rgba(6,182,212,0.02);border-bottom:1px solid rgba(6,182,212,0.08);font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;color:#f1f5f9}
@@ -83,6 +84,118 @@ tr:hover td{background:rgba(255,255,255,0.01)}
 .demo-progress-fill{height:100%;width:60%;background:linear-gradient(90deg,#06b6d4,#8b5cf6);border-radius:3px;animation:progressAnim 2s ease-in-out infinite}
 @keyframes progressAnim{0%{width:0%}50%{width:80%}100%{width:0%}}
 
+/* NEW v0.2 DEMO STYLES */
+.demo-tilt-card{width:80px;height:100px;background:linear-gradient(145deg,rgba(6,182,212,0.15),rgba(139,92,246,0.15));border-radius:10px;border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:9px;transition:0.05s;transform-style:preserve-3d;will-change:transform}
+.demo-layers{position:relative;width:140px;height:80px;cursor:move}
+.demo-layers .l{position:absolute;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:8px;color:#64748b;transition:0.12s ease-out;will-change:transform;border:1px solid rgba(255,255,255,0.04)}
+.demo-layers .l1{width:100%;height:100%;background:rgba(6,182,212,0.06);top:0;left:0}
+.demo-layers .l2{width:70px;height:45px;background:rgba(139,92,246,0.1);top:18px;left:15px}
+.demo-layers .l3{width:45px;height:30px;background:rgba(245,158,11,0.12);top:30px;left:40px;z-index:2}
+.demo-orbit{position:relative;width:100px;height:100px}
+.demo-orbit .oc{position:absolute;top:50%;left:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--cyan, #06b6d4);box-shadow:0 0 15px rgba(6,182,212,0.4)}
+.demo-orbit .or{position:absolute;top:50%;left:50%;width:80px;height:80px;margin:-40px 0 0 -40px;border-radius:50%;border:1px solid rgba(255,255,255,0.05)}
+.demo-orbit .ob{position:absolute;width:8px;height:8px;border-radius:50%;top:-4px;left:50%;margin-left:-4px;transform-origin:4px 44px;animation:orbitSpin 3s linear infinite}
+.demo-orbit .ob:nth-child(3){background:#8b5cf6;animation-duration:4s}
+.demo-orbit .ob:nth-child(4){background:#f59e0b;animation-duration:5s;animation-direction:reverse}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+.demo-bars{display:flex;align-items:flex-end;gap:6px;height:60px;padding:4px}
+.demo-bars .b{width:14px;min-height:3px;border-radius:3px 3px 0 0;background:linear-gradient(to top,#06b6d4,#8b5cf6);transition:height 0.6s cubic-bezier(0.34,1.56,0.64,1)}
+.demo-sparkline{width:140px;height:30px}
+.demo-sparkline path{fill:none;stroke:url(#sparkGrad);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:200;stroke-dashoffset:200;animation:drawSpark 1.5s ease forwards}
+@keyframes drawSpark{to{stroke-dashoffset:0}}
+.demo-radial{width:60px;height:60px;transform:rotate(-90deg)}
+.demo-radial circle.bg{fill:none;stroke:rgba(255,255,255,0.05);stroke-width:5}
+.demo-radial circle.fg{fill:none;stroke:url(#radialGrad);stroke-width:5;stroke-linecap:round;stroke-dasharray:157;stroke-dashoffset:var(--r-offset,157);transition:stroke-dashoffset 0.8s cubic-bezier(0.34,1.56,0.64,1)}
+.demo-gauge{width:100px;height:55px}
+.demo-gauge path.bg{fill:none;stroke:rgba(255,255,255,0.05);stroke-width:6;stroke-linecap:round}
+.demo-gauge path.fg{fill:none;stroke:url(#gaugeGrad);stroke-width:6;stroke-linecap:round;stroke-dasharray:141;stroke-dashoffset:var(--g-offset,141);transition:stroke-dashoffset 1s cubic-bezier(0.34,1.56,0.64,1);filter:drop-shadow(0 0 6px rgba(6,182,212,0.3))}
+.demo-blurhash{position:relative;width:140px;height:80px;border-radius:6px;overflow:hidden}
+.demo-blurhash .bp{position:absolute;inset:0;background:linear-gradient(135deg,#0c1f3a,#1e0a3c);filter:blur(10px);transition:opacity 0.5s}
+.demo-blurhash .bi{position:absolute;inset:0;background:linear-gradient(135deg,#1a3a6b,#3a1a6b);opacity:0;transition:opacity 0.7s ease}
+.demo-blurhash.loaded .bp{opacity:0}
+.demo-blurhash.loaded .bi{opacity:1}
+.demo-blurhash .bb{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:8px;padding:3px 10px;border:1px solid rgba(255,255,255,0.08);border-radius:4px;background:rgba(0,0,0,0.4);color:#94a3b8;cursor:pointer;z-index:2;backdrop-filter:blur(6px)}
+.demo-reveal{width:140px;height:80px;border-radius:6px;overflow:hidden;position:relative;cursor:pointer}
+.demo-reveal .rt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#64748b;z-index:1}
+.demo-reveal .rc{width:100%;height:100%;background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(6,182,212,0.15));clip-path:circle(0% at 50% 50%);transition:clip-path 0.6s cubic-bezier(0.34,1.56,0.64,1);display:flex;align-items:center;justify-content:center;font-size:9px;color:#94a3b8}
+.demo-reveal.revealed .rc{clip-path:circle(100% at 50% 50%)}
+.demo-compare{position:relative;width:180px;height:65px;border-radius:6px;overflow:hidden;user-select:none;cursor:ew-resize}
+.demo-compare .cb{position:absolute;inset:0}
+.demo-compare .cb1{background:linear-gradient(135deg,#1e3a5f,#2a1a5f)}
+.demo-compare .cb2{background:linear-gradient(135deg,#5f1a3a,#1a5f3a);clip-path:inset(0 50% 0 0)}
+.demo-compare .ch{position:absolute;top:0;bottom:0;width:3px;background:white;left:50%;transform:translateX(-50%);z-index:2;box-shadow:0 0 10px rgba(0,0,0,0.5);transition:left 0.05s}
+.demo-compare .ch::after{content:'↔';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.5);color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;backdrop-filter:blur(4px)}
+.demo-morph-btn{padding:6px 16px;border:1px solid rgba(255,255,255,0.08);border-radius:6px;background:rgba(0,0,0,0.2);color:#94a3b8;cursor:pointer;font-size:10px;transition:0.2s}
+.demo-morph-btn:hover{border-color:#06b6d4}
+.demo-morph-svg{width:45px;height:45px}
+.demo-morph-svg path{fill:rgba(6,182,212,0.2);stroke:#06b6d4;stroke-width:2;transition:d 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+.demo-shake-box{width:50px;height:50px;background:rgba(236,72,153,0.08);border:1px solid rgba(236,72,153,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:0.1s}
+.shake-anim{animation:shakeKey 0.4s ease}
+@keyframes shakeKey{0%,100%{transform:translateX(0)}10%{transform:translateX(-4px) rotate(-1deg)}20%{transform:translateX(4px) rotate(1deg)}30%{transform:translateX(-3px)}40%{transform:translateX(3px)}50%{transform:translateX(-2px)}60%{transform:translateX(2px)}}
+.demo-bounce-box{width:45px;height:45px;background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(16,185,129,0.15));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;transform:scale(0);transition:none}
+.bounce-anim{animation:bounceKey 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
+@keyframes bounceKey{0%{transform:scale(0)}50%{transform:scale(1.15)}70%{transform:scale(0.92)}100%{transform:scale(1)}}
+.demo-flip{width:70px;height:70px;perspective:500px;cursor:pointer}
+.demo-flip .fi{position:relative;width:100%;height:100%;transition:transform 0.5s ease;transform-style:preserve-3d}
+.demo-flip.flipped .fi{transform:rotateY(180deg)}
+.demo-flip .ff,.demo-flip .fb{position:absolute;inset:0;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;backface-visibility:hidden;border:1px solid rgba(255,255,255,0.06)}
+.demo-flip .ff{background:rgba(6,182,212,0.08)}
+.demo-flip .fb{background:rgba(139,92,246,0.12);transform:rotateY(180deg)}
+.demo-gesture{position:relative;width:100%;height:70px;border-radius:6px;background:rgba(0,0,0,0.15);border:1px dashed rgba(255,255,255,0.06);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;overflow:hidden}
+.demo-gesture .gs{font-size:9px;color:#64748b}
+.pinch-area{display:flex;align-items:center;justify-content:center;gap:16px;font-size:18px;transition:transform 0.2s}
+.pan-content{width:140px;height:50px;overflow:hidden;position:relative;border-radius:4px;cursor:grab}
+.pan-track{display:flex;gap:4px;width:max-content;transition:transform 0.15s ease;user-select:none;pointer-events:none}
+.pan-item{width:35px;height:50px;background:rgba(6,182,212,0.06);border:1px solid rgba(255,255,255,0.04);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;color:#64748b}
+.dt-target{padding:6px 18px;border:1px solid rgba(255,255,255,0.08);border-radius:5px;background:rgba(255,255,255,0.02);color:#64748b;cursor:pointer;font-size:10px;transition:0.2s;user-select:none}
+.dt-target.tapped{background:rgba(6,182,212,0.1);border-color:#06b6d4;color:#06b6d4}
+.demo-scroll-sections{width:200px;height:100px;overflow-y:scroll;scroll-snap-type:y mandatory;border-radius:6px;border:1px solid rgba(255,255,255,0.05);position:relative}
+.demo-scroll-sections .ss{height:100px;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
+.demo-scroll-sections .ss:nth-child(1){background:rgba(6,182,212,0.06);color:#06b6d4}
+.demo-scroll-sections .ss:nth-child(2){background:rgba(139,92,246,0.06);color:#8b5cf6}
+.demo-scroll-sections .ss:nth-child(3){background:rgba(245,158,11,0.06);color:#f59e0b}
+.ss-dots{position:absolute;right:6px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:3px}
+.ss-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.12);transition:0.2s}
+.ss-dot.active{background:#06b6d4;box-shadow:0 0 6px rgba(6,182,212,0.4)}
+.demo-driven{width:200px;height:100px;overflow-y:scroll;border-radius:6px;border:1px solid rgba(255,255,255,0.05);position:relative}
+.demo-driven .dp{position:absolute;top:0;left:0;height:3px;background:linear-gradient(to right,#06b6d4,#8b5cf6);width:var(--d-pct,0%);transition:width 0.08s;border-radius:0 3px 3px 0;z-index:2}
+.demo-driven .dc{height:250px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.demo-driven .db{height:45px;background:rgba(6,182,212,0.04);border:1px solid rgba(255,255,255,0.04);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#475569}
+.demo-breadcrumb{display:flex;align-items:center;gap:3px;font-size:10px;padding:6px 14px;background:rgba(0,0,0,0.15);border-radius:5px;border:1px solid rgba(255,255,255,0.04)}
+.demo-breadcrumb .bc{color:#64748b;cursor:pointer;padding:1px 5px;border-radius:3px;transition:0.2s}
+.demo-breadcrumb .bc:hover{color:#f1f5f9;background:rgba(255,255,255,0.03)}
+.demo-breadcrumb .bc.cur{color:#f1f5f9}
+.demo-breadcrumb .bs{color:#475569;font-size:8px}
+.popover-wrap{position:relative}
+.popover-box{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#1a1f30;border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:10px 14px;min-width:110px;font-size:9px;color:#94a3b8;opacity:0;visibility:hidden;transition:0.2s ease;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.popover-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#1a1f30}
+.popover-box.vis{opacity:1;visibility:visible}
+.popover-trig{padding:6px 16px;border:1px solid rgba(255,255,255,0.08);border-radius:5px;background:rgba(0,0,0,0.2);color:#94a3b8;cursor:pointer;font-size:10px;transition:0.2s}
+.popover-trig:hover{border-color:#06b6d4}
+.demo-accord{width:100%}
+.demo-accord .ai{border-bottom:1px solid rgba(255,255,255,0.04)}
+.demo-accord .ah{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;cursor:pointer;font-size:10px;color:#64748b;transition:0.2s;user-select:none}
+.demo-accord .ah:hover{color:#f1f5f9}
+.demo-accord .aic{transition:transform 0.2s;font-size:8px;color:#475569}
+.demo-accord .ai.open .aic{transform:rotate(180deg)}
+.demo-accord .ab{max-height:0;overflow:hidden;transition:max-height 0.25s ease;padding:0 10px}
+.demo-accord .ai.open .ab{max-height:50px;padding:6px 10px 10px}
+.demo-accord .abc{font-size:9px;color:#475569}
+.demo-dividers{width:100%;display:flex;flex-direction:column;gap:10px}
+.demo-dividers .ds{display:flex;flex-direction:column;gap:3px}
+.demo-dividers .ds span{font-size:8px;color:#475569}
+.demo-divider{border:none;height:1px;background:rgba(255,255,255,0.06)}
+.demo-divider.dashed{border-top:1px dashed rgba(255,255,255,0.06);height:0;background:transparent}
+.demo-divider.gradient{height:1px;background:linear-gradient(to right,transparent,#06b6d4,#8b5cf6,transparent)}
+.demo-divider.labeled{display:flex;align-items:center;gap:10px;height:auto;background:transparent;border:none;color:#64748b;font-size:9px}
+.demo-divider.labeled::before,.demo-divider.labeled::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.06)}
+.demo-badges{display:flex;align-items:center;gap:20px}
+.demo-badges .bi{font-size:20px;position:relative;cursor:pointer}
+.demo-badges .bd{position:absolute;top:-3px;right:-5px;width:7px;height:7px;border-radius:50%;background:#ec4899;box-shadow:0 0 8px rgba(236,72,153,0.5);animation:bdPulse 2s ease-in-out infinite}
+.demo-badges .bc{position:absolute;top:-8px;right:-12px;min-width:16px;height:16px;padding:0 4px;border-radius:100px;background:#ec4899;color:white;font-size:8px;font-weight:600;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(236,72,153,0.4)}
+@keyframes bdPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+
 /* NEW SHOWCASE */
 .new-badge{display:inline-flex;align-items:center;gap:4px;font-size:0.55rem;font-family:'JetBrains Mono',monospace;background:#a3d977;color:#05080e;padding:1px 6px;border-radius:4px;font-weight:600;margin-left:6px;vertical-align:middle}
 
@@ -95,7 +208,7 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="badge">✦ v0.1 — 45 properties</div>
+  <div class="badge">✦ v0.2 — 70 properties</div>
   <h1>Design Lang<br><span class="gradient">Beyond CSS</span></h1>
   <p>A declarative design language that compiles to CSS + JS. Instead of hacking CSS for modern UI patterns, Design Lang makes them native — physics, materials, depth, motion, accessibility, haptics, and more.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -108,7 +221,7 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
   <div class="container">
     <div style="margin-bottom:40px">
       <span class="badge">✦ Complete Property Reference</span>
-      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">45 properties,<br>one language.</h2>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">70 properties,<br>one language.</h2>
       <p style="color:#64748b;font-size:0.9rem"><span class="tag-v1">v0.1</span> Original property &nbsp; <span class="tag-new">NEW</span> Added June 2026</p>
     </div>
 
@@ -174,6 +287,10 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
         <tr><td class="property">gesture</td><td class="code">swipe(left: @dismiss, right: @reveal)</td><td class="desc">Touch swipe gesture bindings <span class="tag-new">NEW</span></td></tr>
         <tr><td class="property">gesture</td><td class="code">longpress(ms: 500, action: @menu)</td><td class="desc">Long press with haptic <span class="tag-new">NEW</span></td></tr>
         <tr><td class="property">magnetic</td><td class="code">attract(strength: 0.3, radius: 200px)</td><td class="desc">Cursor magnetic attraction zone <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">gesture</td><td class="code">pinch(min: 1x, max: 5x, haptic: true)</td><td class="desc">Pinch-to-zoom with scale clamping <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">gesture</td><td class="code">rotate(snap: 45deg, haptic: true)</td><td class="desc">Two-finger rotation gesture <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">gesture</td><td class="code">doubletap(window: 300ms, action: @like)</td><td class="desc">Double tap detection <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">gesture</td><td class="code">pan(axis: constrained-x, momentum: true)</td><td class="desc">Pan/drag content with momentum <span class="tag-new">NEW+</span></td></tr>
 
         <!-- EFFECTS -->
         <tr class="category-header"><td colspan="3">Effects</td></tr>
@@ -197,6 +314,10 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
         <tr><td class="property">number</td><td class="code">tween(from: 0, to: 10000, duration: 1.5s)</td><td class="desc">Animated number counter on viewport entry <span class="tag-new">NEW</span></td></tr>
         <tr><td class="property">type</td><td class="code">writer(text: "Hello world", speed: 60ms, cursor: true)</td><td class="desc">Typewriter text reveal <span class="tag-new">NEW</span></td></tr>
         <tr><td class="property">overflow</td><td class="code">marquee(speed: 30s, direction: left, pause: hover)</td><td class="desc">Auto-scrolling text marquee <span class="tag-new">NEW</span></td></tr>
+        <tr><td class="property">motion</td><td class="code">morph(toggle: true, easing: spring)</td><td class="desc">SVG path morphing between states <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">motion</td><td class="code">shake(intensity: 3px, duration: 0.4s)</td><td class="desc">Error/attention shake animation <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">motion</td><td class="code">bounce(amplitude: 12px, damping: 0.6)</td><td class="desc">Elastic bounce entrance animation <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">motion</td><td class="code">flip(duration: 0.5s, axis: y)</td><td class="desc">3D card flip on click/hover <span class="tag-new">NEW+</span></td></tr>
 
         <!-- LIFECYCLE HOOKS -->
         <tr class="category-header"><td colspan="3">Lifecycle Hooks</td></tr>
@@ -216,6 +337,38 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
         <tr><td class="property">break</td><td class="code">points(sm: 640px, md: 768px, lg: 1024px, xl: 1280px)</td><td class="desc">Custom responsive breakpoint tokens <span class="tag-new">NEW</span></td></tr>
         <tr><td class="property">scroll</td><td class="code">snap(axis: x, behavior: mandatory, alignment: center)</td><td class="desc">CSS scroll snap container <span class="tag-new">NEW</span></td></tr>
         <tr><td class="property">grid</td><td class="code">auto-fill(min: 200px, max: 1fr)</td><td class="desc">Auto-fill grid columns <span class="tag-v1">v0.1</span></td></tr>
+        <tr><td class="property">scroll</td><td class="code">sections(direction: vertical, snap: always)</td><td class="desc">Full-viewport snap sections with navigation dots <span class="tag-new-plus">NEW+</span></td></tr>
+        <tr><td class="property">scroll</td><td class="code">driven(timeline: self, range: [0,1])</td><td class="desc">CSS scroll-driven animation binding <span class="tag-new-plus">NEW+</span></td></tr>
+
+        <!-- SPATIAL & 3D -->
+        <tr class="category-header"><td colspan="3">Spatial &amp; 3D</td></tr>
+        <tr><td class="property">spatial</td><td class="code">tilt(max: 15deg, perspective: 1000px)</td><td class="desc">Mouse-responsive 3D card tilt <span class="tag-new-plus">NEW+</span></td></tr>
+        <tr><td class="property">spatial</td><td class="code">layers(depth: [0, 20, 50], parallax: 0.3)</td><td class="desc">Multi-layer z-stack parallax composition <span class="tag-new-plus">NEW+</span></td></tr>
+        <tr><td class="property">spatial</td><td class="code">orbit(radius: 60px, speed: 12s)</td><td class="desc">Elements orbit a central pivot point <span class="tag-new">NEW+</span></td></tr>
+
+        <!-- DATA DISPLAY -->
+        <tr class="category-header"><td colspan="3">Data Display</td></tr>
+        <tr><td class="property">chart</td><td class="code">bar(data: [30, 60, 90], rounded: true)</td><td class="desc">Inline bar chart — responsive, animated <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">chart</td><td class="code">sparkline(data: [3,7,2,9,5], height: 24px)</td><td class="desc">Mini inline trend line, no axes <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">chart</td><td class="code">radial(value: 0.73, stroke: 6px)</td><td class="desc">Circular progress ring <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">chart</td><td class="code">gauge(min: 0, max: 100, value: 67, arc: 270deg)</td><td class="desc">Semi-circular dashboard gauge <span class="tag-new">NEW+</span></td></tr>
+
+        <!-- MEDIA & IMAGE -->
+        <tr class="category-header"><td colspan="3">Media &amp; Image</td></tr>
+        <tr><td class="property">media</td><td class="code">blurhash(hash: "L6PZfSi_.AyE...")</td><td class="desc">BlurHash placeholder on image load <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">media</td><td class="code">reveal(effect: circle, duration: 0.8s)</td><td class="desc">Clip-path reveal on scroll-in <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">media</td><td class="code">compare(before: img1, after: img2)</td><td class="desc">Before/after image comparison slider <span class="tag-new">NEW+</span></td></tr>
+
+        <!-- NAVIGATION -->
+        <tr class="category-header"><td colspan="3">Navigation</td></tr>
+        <tr><td class="property">nav</td><td class="code">breadcrumb(separator: chevron, maxItems: 5)</td><td class="desc">Auto-breadcrumb trail from DOM / route <span class="tag-new">NEW+</span></td></tr>
+
+        <!-- UI PRIMITIVES -->
+        <tr class="category-header"><td colspan="3">UI Primitives</td></tr>
+        <tr><td class="property">ui</td><td class="code">popover(placement: bottom, offset: 8px)</td><td class="desc">Anchor-positioned popover with Popover API <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">ui</td><td class="code">accordion(mode: single, icon: chevron)</td><td class="desc">Expand/collapse disclosure section <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">ui</td><td class="code">divider(variant: dashed | gradient | labeled)</td><td class="desc">Themed visual separator <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">ui</td><td class="code">badge(count: 23, limit: 99, pulse: true)</td><td class="desc">Notification badge/dot with count <span class="tag-new">NEW+</span></td></tr>
 
       </tbody>
     </table>
@@ -227,8 +380,8 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
   <div class="container">
     <div style="margin-bottom:40px">
       <span class="badge">✦ Interactive Showcase</span>
-      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">25 new properties<br>in action.</h2>
-      <p style="color:#64748b;font-size:0.9rem">Hover, press, touch — each card demonstrates a Design Lang property visually <span class="tag-new">NEW</span></p>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">50 properties<br>in action.</h2>
+      <p style="color:#64748b;font-size:0.9rem">Hover, press, touch — 50 interactive demos showing Design Lang in action</p>
     </div>
 
     <div class="showcase-grid">
@@ -530,6 +683,392 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
         <div class="sc-desc">Fixed scroll progress bar — fills from 0% to 100% as you read the page.</div>
       </div>
 
+      <!-- 26. spatial: tilt -->
+      <div class="showcase-card">
+        <div class="sc-number">#26 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <div class="demo-tilt-card" id="scTiltCard">↕ tilt</div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">spatial: tilt</div>
+        <div class="sc-code">spatial: tilt(max: 15deg, perspective: 1000px)</div>
+        <div class="sc-desc">Mouse-responsive 3D card tilt — follows cursor like a physical object.</div>
+      </div>
+
+      <!-- 27. spatial: layers -->
+      <div class="showcase-card">
+        <div class="sc-number">#27 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <div class="demo-layers" id="scLayers">
+            <div class="l l1">bg</div>
+            <div class="l l2">mid</div>
+            <div class="l l3">fg</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">spatial: layers</div>
+        <div class="sc-code">spatial: layers(depth: [0, 20, 50], parallax: 0.3)</div>
+        <div class="sc-desc">Multi-layer z-stack — each layer moves at its own pace. Cinematic depth.</div>
+      </div>
+
+      <!-- 28. spatial: orbit -->
+      <div class="showcase-card">
+        <div class="sc-number">#28 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box demo-glass" style="flex-direction:column">
+          <div class="demo-orbit">
+            <div class="oc"></div>
+            <div class="or"></div>
+            <div class="ob"></div>
+            <div class="ob"></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">spatial: orbit</div>
+        <div class="sc-code">spatial: orbit(radius: 60px, speed: 12s)</div>
+        <div class="sc-desc">Elements orbit a central pivot — configurable radius, speed, direction.</div>
+      </div>
+
+      <!-- 29. chart: bar -->
+      <div class="showcase-card">
+        <div class="sc-number">#29 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-bars" id="scBars">
+            <div class="b" data-h="25" style="height:8px"></div>
+            <div class="b" data-h="45" style="height:8px"></div>
+            <div class="b" data-h="70" style="height:8px"></div>
+            <div class="b" data-h="35" style="height:8px"></div>
+            <div class="b" data-h="55" style="height:8px"></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">chart: bar</div>
+        <div class="sc-code">chart: bar(data: [30, 60, 90], rounded: true)</div>
+        <div class="sc-desc">Inline bar chart — responsive, animated on entry, vertical or horizontal.</div>
+      </div>
+
+      <!-- 30. chart: sparkline -->
+      <div class="showcase-card">
+        <div class="sc-number">#30 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <svg class="demo-sparkline" viewBox="0 0 140 30">
+            <defs><linearGradient id="sparkGrad2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+            <path d="M0,26 L15,24 L30,28 L45,18 L60,22 L75,8 L90,12 L105,6 L120,10 L140,14"/>
+          </svg>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">chart: sparkline</div>
+        <div class="sc-code">chart: sparkline(data: [3,7,2,9,5], height: 24px)</div>
+        <div class="sc-desc">Mini inline trend line — no axes, no labels. Pure data shape.</div>
+      </div>
+
+      <!-- 31. chart: radial -->
+      <div class="showcase-card">
+        <div class="sc-number">#31 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <svg class="demo-radial" viewBox="0 0 60 60">
+            <defs><linearGradient id="radialGrad2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
+            <circle class="bg" cx="30" cy="30" r="25"/>
+            <circle class="fg" id="scRadial" cx="30" cy="30" r="25" style="--r-offset: 157"/>
+          </svg>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">chart: radial</div>
+        <div class="sc-code">chart: radial(value: 0.73, stroke: 6px)</div>
+        <div class="sc-desc">Circular progress ring — animated on scroll-in, supports overlaid rings.</div>
+      </div>
+
+      <!-- 32. chart: gauge -->
+      <div class="showcase-card">
+        <div class="sc-number">#32 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <svg class="demo-gauge" viewBox="0 0 100 55">
+            <defs><linearGradient id="gaugeGrad2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#06b6d4"/><stop offset="50%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs>
+            <path class="bg" d="M 8,48 A 42,42 0 0,1 92,48"/>
+            <path class="fg" id="scGauge" d="M 8,48 A 42,42 0 0,1 92,48" style="--g-offset: 141"/>
+          </svg>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">chart: gauge</div>
+        <div class="sc-code">chart: gauge(min: 0, max: 100, value: 67, arc: 270deg)</div>
+        <div class="sc-desc">Semi-circular dashboard gauge — for analytics and control panels.</div>
+      </div>
+
+      <!-- 33. media: blurhash -->
+      <div class="showcase-card">
+        <div class="sc-number">#33 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-blurhash" id="scBlurhash">
+            <div class="bp"></div>
+            <div class="bi"></div>
+            <div class="bb" onclick="this.parentElement.classList.toggle('loaded')">🔮 Load</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">media: blurhash</div>
+        <div class="sc-code">media: blurhash(hash: "L6PZfSi_.AyE...")</div>
+        <div class="sc-desc">BlurHash placeholder — blurred dominant color until image loads.</div>
+      </div>
+
+      <!-- 34. media: reveal -->
+      <div class="showcase-card">
+        <div class="sc-number">#34 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-reveal" id="scReveal" onclick="this.classList.toggle('revealed')">
+            <div class="rt">Click →</div>
+            <div class="rc">✦ revealed ✦</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">media: reveal</div>
+        <div class="sc-code">media: reveal(effect: circle, duration: 0.8s)</div>
+        <div class="sc-desc">Clip-path reveal on scroll-in — circle, wipe, or slide entrance.</div>
+      </div>
+
+      <!-- 35. media: compare -->
+      <div class="showcase-card">
+        <div class="sc-number">#35 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-compare" id="scCompare">
+            <div class="cb cb1"></div>
+            <div class="cb cb2" id="scCb2"></div>
+            <div class="ch" id="scCh"></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">media: compare</div>
+        <div class="sc-code">media: compare(before: img1, after: img2)</div>
+        <div class="sc-desc">Before/after image comparison — drag handle, smooth transition.</div>
+      </div>
+
+      <!-- 36. motion: morph -->
+      <div class="showcase-card">
+        <div class="sc-number">#36 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:6px">
+          <svg class="demo-morph-svg" viewBox="0 0 45 45">
+            <path id="scMorphPath" d="M22.5,7 L37,22.5 L22.5,38 L8,22.5 Z"/>
+          </svg>
+          <button class="demo-morph-btn" onclick="scToggleMorph()">Toggle</button>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">motion: morph</div>
+        <div class="sc-code">motion: morph(toggle: true, easing: spring)</div>
+        <div class="sc-desc">SVG path morphing between states — smooth, spring-driven transitions.</div>
+      </div>
+
+      <!-- 37. motion: shake -->
+      <div class="showcase-card">
+        <div class="sc-number">#37 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-shake-box" id="scShake" onclick="this.classList.remove('shake-anim');void this.offsetWidth;this.classList.add('shake-anim')">⚠️</div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">motion: shake</div>
+        <div class="sc-code">motion: shake(intensity: 3px, duration: 0.4s)</div>
+        <div class="sc-desc">Attention/shake animation — triggers on error, validation fail, etc.</div>
+      </div>
+
+      <!-- 38. motion: bounce -->
+      <div class="showcase-card">
+        <div class="sc-number">#38 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-bounce-box" id="scBounce">✦</div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">motion: bounce</div>
+        <div class="sc-code">motion: bounce(amplitude: 12px, damping: 0.6)</div>
+        <div class="sc-desc">Elastic bounce entrance with spring overshoot on mount.</div>
+      </div>
+
+      <!-- 39. motion: flip -->
+      <div class="showcase-card">
+        <div class="sc-number">#39 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-flip" id="scFlip" onclick="this.classList.toggle('flipped')">
+            <div class="fi">
+              <div class="ff">front</div>
+              <div class="fb">back ✦</div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">motion: flip</div>
+        <div class="sc-code">motion: flip(duration: 0.5s, axis: y)</div>
+        <div class="sc-desc">3D card flip on click/hover — front ↔ back with perspective.</div>
+      </div>
+
+      <!-- 40. gesture: pinch -->
+      <div class="showcase-card">
+        <div class="sc-number">#40 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-gesture">
+            <div class="pinch-area" id="scPinch"><span>👆</span><span style="color:#475569;font-size:14px">🤏</span></div>
+            <div class="gs" id="scPinchStatus">scroll to zoom</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">gesture: pinch</div>
+        <div class="sc-code">gesture: pinch(min: 1x, max: 5x, haptic: true)</div>
+        <div class="sc-desc">Pinch-to-zoom with scale clamping and haptic feedback.</div>
+      </div>
+
+      <!-- 41. gesture: rotate -->
+      <div class="showcase-card">
+        <div class="sc-number">#41 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-gesture">
+            <span style="font-size:24px;transition:transform 0.3s" id="scRotate">↻</span>
+            <div class="gs">snap at 45°</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">gesture: rotate</div>
+        <div class="sc-code">gesture: rotate(snap: 45deg, haptic: true)</div>
+        <div class="sc-desc">Two-finger rotation with snap increments — for dials, knobs, images.</div>
+      </div>
+
+      <!-- 42. gesture: doubletap -->
+      <div class="showcase-card">
+        <div class="sc-number">#42 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-gesture">
+            <div class="dt-target" id="scDtap">tap tap</div>
+            <div class="gs" id="scDtapS">double-tap me</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">gesture: doubletap</div>
+        <div class="sc-code">gesture: doubletap(window: 300ms, action: @like)</div>
+        <div class="sc-desc">Double tap detection — Instagram-style heart, expand, bookmark.</div>
+      </div>
+
+      <!-- 43. gesture: pan -->
+      <div class="showcase-card">
+        <div class="sc-number">#43 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-gesture" style="height:70px">
+            <div class="pan-content" id="scPan">
+              <div class="pan-track" id="scPanTrack">
+                <div class="pan-item">1</div>
+                <div class="pan-item">2</div>
+                <div class="pan-item">3</div>
+                <div class="pan-item">4</div>
+                <div class="pan-item">5</div>
+              </div>
+            </div>
+            <div class="gs">← drag →</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">gesture: pan</div>
+        <div class="sc-code">gesture: pan(axis: constrained-x, momentum: true)</div>
+        <div class="sc-desc">Pan/drag with momentum on release — smooth fling physics.</div>
+      </div>
+
+      <!-- 44. scroll: sections -->
+      <div class="showcase-card">
+        <div class="sc-number">#44 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column;padding:0">
+          <div class="demo-scroll-sections" id="scSnap">
+            <div class="ss">01</div>
+            <div class="ss">02</div>
+            <div class="ss">03</div>
+            <div class="ss-dots">
+              <div class="ss-dot active"></div>
+              <div class="ss-dot"></div>
+              <div class="ss-dot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">scroll: sections</div>
+        <div class="sc-code">scroll: sections(direction: vertical, snap: always)</div>
+        <div class="sc-desc">Full-viewport snap sections with navigation — like presentations.</div>
+      </div>
+
+      <!-- 45. scroll: driven -->
+      <div class="showcase-card">
+        <div class="sc-number">#45 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column;padding:0">
+          <div class="demo-driven" id="scDriven">
+            <div class="dp" id="scDP"></div>
+            <div class="dc">
+              <div class="db">scroll ↓</div>
+              <div class="db">progress</div>
+              <div class="db">drives</div>
+              <div class="db">animation</div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">scroll: driven</div>
+        <div class="sc-code">scroll: driven(timeline: self, range: [0,1])</div>
+        <div class="sc-desc">CSS scroll-driven animation binding — map scroll to any animation.</div>
+      </div>
+
+      <!-- 46. nav: breadcrumb -->
+      <div class="showcase-card">
+        <div class="sc-number">#46 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-breadcrumb">
+            <span class="bc">Home</span>
+            <span class="bs">›</span>
+            <span class="bc">Products</span>
+            <span class="bs">›</span>
+            <span class="bc">Design</span>
+            <span class="bs">›</span>
+            <span class="bc cur">Design Lang</span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">nav: breadcrumb</div>
+        <div class="sc-code">nav: breadcrumb(separator: chevron, maxItems: 5)</div>
+        <div class="sc-desc">Auto-breadcrumb trail from DOM/route — collapses at breakpoints.</div>
+      </div>
+
+      <!-- 47. ui: popover -->
+      <div class="showcase-card">
+        <div class="sc-number">#47 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column;padding-top:24px">
+          <div class="popover-wrap">
+            <div class="popover-box" id="scPop">✦ 70 properties — v0.2 coming</div>
+            <button class="popover-trig" onclick="var p=document.getElementById('scPop');p.classList.toggle('vis')">Popover</button>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">ui: popover</div>
+        <div class="sc-code">ui: popover(placement: bottom, offset: 8px)</div>
+        <div class="sc-desc">Anchor-positioned popover with Popover API. Animated entry, dismiss.</div>
+      </div>
+
+      <!-- 48. ui: accordion -->
+      <div class="showcase-card">
+        <div class="sc-number">#48 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column;align-items:stretch;padding:6px">
+          <div class="demo-accord">
+            <div class="ai">
+              <div class="ah" onclick="scToggleAcc(this)"><span>What is it?</span><span class="aic">▼</span></div>
+              <div class="ab"><div class="abc">DSL that compiles to CSS+JS</div></div>
+            </div>
+            <div class="ai">
+              <div class="ah" onclick="scToggleAcc(this)"><span>Production ready?</span><span class="aic">▼</span></div>
+              <div class="ab"><div class="abc">v0.1 experimental, v0.2 soon</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">ui: accordion</div>
+        <div class="sc-code">ui: accordion(mode: single, icon: chevron)</div>
+        <div class="sc-desc">Expand/collapse disclosure — smooth height animation.</div>
+      </div>
+
+      <!-- 49. ui: divider -->
+      <div class="showcase-card">
+        <div class="sc-number">#49 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-dividers">
+            <div class="ds"><span>solid</span><hr class="demo-divider"></div>
+            <div class="ds"><span>dashed</span><hr class="demo-divider dashed"></div>
+            <div class="ds"><span>gradient</span><hr class="demo-divider gradient"></div>
+            <div class="ds"><span>labeled</span><hr class="demo-divider labeled" data-label="or"></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">ui: divider</div>
+        <div class="sc-code">ui: divider(variant: dashed | gradient | labeled)</div>
+        <div class="sc-desc">Themed visual separator — solid, dashed, gradient, or with label.</div>
+      </div>
+
+      <!-- 50. ui: badge -->
+      <div class="showcase-card">
+        <div class="sc-number">#50 <span class="tag-new">NEW+</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-badges">
+            <div class="bi">🔔<div class="bc" style="animation:bdPulse 2s ease-in-out infinite">3</div></div>
+            <div class="bi">💬<div class="bd"></div></div>
+            <div class="bi">📨<div class="bc">99+</div></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#a3d977;font-weight:700">ui: badge</div>
+        <div class="sc-code">ui: badge(count: 23, limit: 99, pulse: true)</div>
+        <div class="sc-desc">Notification badge/dot with count overflow and pulse animation.</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -538,7 +1077,7 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
 <footer>
   <div class="container">
     <div class="footer-bottom">
-      <p>Design Lang v0.1 — 45 properties (20 original + 25 new) — MIT — Empire Creative</p>
+      <p>Design Lang v0.2 — 70 properties (20 original + 50 new) — MIT — Empire Creative</p>
       <p style="margin-top:4px"><a href="https://github.com/santaclawone/design-lang" style="color:#06b6d4;text-decoration:none">GitHub repo →</a> &nbsp;·&nbsp; <a href="https://santaclawone.github.io/ds-studios-portfolio/" style="color:#06b6d4;text-decoration:none">DS Studios →</a></p>
     </div>
   </div>
@@ -580,6 +1119,211 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
     }
   });
 })();
+
+// 26. spatial: tilt
+(function(){
+  var c = document.getElementById('scTiltCard');
+  if(!c) return;
+  c.addEventListener('mousemove', function(e){
+    var r = c.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width;
+    var y = (e.clientY - r.top) / r.height;
+    c.style.transform = 'perspective(400px) rotateX('+((y-0.5)*-16)+'deg) rotateY('+((x-0.5)*16)+'deg) scale3d(1.05,1.05,1.05)';
+  });
+  c.addEventListener('mouseleave', function(){ c.style.transform = ''; });
+})();
+
+// 27. spatial: layers
+(function(){
+  var demo = document.getElementById('scLayers');
+  if(!demo) return;
+  var ls = demo.querySelectorAll('.l');
+  demo.addEventListener('mousemove', function(e){
+    var r = demo.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width - 0.5;
+    var y = (e.clientY - r.top) / r.height - 0.5;
+    ls.forEach(function(el, i){ var f = (i+1)*6; el.style.transform = 'translate('+(x*f)+'px,'+(y*f)+'px)'; });
+  });
+  demo.addEventListener('mouseleave', function(){ ls.forEach(function(el){ el.style.transform = ''; }); });
+})();
+
+// 29. chart: bar animate
+(function(){
+  var bars = document.querySelectorAll('#scBars .b');
+  if(!bars.length) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        bars.forEach(function(b){ b.style.height = b.dataset.h + 'px'; });
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.3});
+  var parent = document.getElementById('scBars');
+  if(parent) obs.observe(parent);
+  setTimeout(function(){ bars.forEach(function(b){ b.style.height = b.dataset.h + 'px'; }); }, 400);
+})();
+
+// 31. chart: radial animate
+(function(){
+  var el = document.getElementById('scRadial');
+  if(!el) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ el.style.setProperty('--r-offset', '40'); obs.unobserve(el); } });
+  }, {threshold:0.3});
+  obs.observe(el);
+  setTimeout(function(){ el.style.setProperty('--r-offset', '40'); }, 500);
+})();
+
+// 32. chart: gauge animate
+(function(){
+  var el = document.getElementById('scGauge');
+  if(!el) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ el.style.setProperty('--g-offset', '55'); obs.unobserve(el); } });
+  }, {threshold:0.3});
+  obs.observe(el);
+  setTimeout(function(){ el.style.setProperty('--g-offset', '55'); }, 500);
+})();
+
+// 35. media: compare slider
+(function(){
+  var demo = document.getElementById('scCompare');
+  if(!demo) return;
+  var after = document.getElementById('scCb2');
+  var handle = document.getElementById('scCh');
+  var drag = false;
+  function upd(x){
+    var r = demo.getBoundingClientRect();
+    var p = Math.max(5, Math.min(95, ((x - r.left) / r.width) * 100));
+    after.style.clipPath = 'inset(0 '+(100-p)+'% 0 0)';
+    handle.style.left = p + '%';
+  }
+  demo.addEventListener('mousedown', function(e){ drag = true; upd(e.clientX); });
+  document.addEventListener('mousemove', function(e){ if(drag) upd(e.clientX); });
+  document.addEventListener('mouseup', function(){ drag = false; });
+  demo.addEventListener('touchstart', function(e){ drag = true; upd(e.touches[0].clientX); }, {passive:true});
+  document.addEventListener('touchmove', function(e){ if(drag && e.touches[0]) upd(e.touches[0].clientX); }, {passive:true});
+  document.addEventListener('touchend', function(){ drag = false; });
+})();
+
+// 36. motion: morph
+function scToggleMorph(){
+  var p = document.getElementById('scMorphPath');
+  if(!p) return;
+  var cur = p.getAttribute('d');
+  p.setAttribute('d', cur.indexOf('M22.5,7') > -1
+    ? 'M22.5,3 C35,3 42,12 42,22.5 C42,33 35,42 22.5,42 C10,42 3,33 3,22.5 C3,12 10,3 22.5,3 Z'
+    : 'M22.5,7 L37,22.5 L22.5,38 L8,22.5 Z');
+}
+
+// 38. motion: bounce
+(function(){
+  var el = document.getElementById('scBounce');
+  if(!el) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ el.classList.add('bounce-anim'); obs.unobserve(el); } });
+  }, {threshold:0.3});
+  obs.observe(el);
+  setTimeout(function(){ el.classList.add('bounce-anim'); }, 600);
+})();
+
+// 40. gesture: pinch
+(function(){
+  var area = document.getElementById('scPinch');
+  var st = document.getElementById('scPinchStatus');
+  if(!area) return;
+  var s = 1;
+  area.addEventListener('wheel', function(e){
+    e.preventDefault();
+    s = Math.max(0.5, Math.min(3, s - e.deltaY * 0.002));
+    area.style.transform = 'scale('+s+')';
+    if(st) st.textContent = Math.round(s*100)+'%';
+  }, {passive:false});
+})();
+
+// 42. gesture: doubletap
+(function(){
+  var t = document.getElementById('scDtap');
+  var s = document.getElementById('scDtapS');
+  if(!t) return;
+  var tc = 0, timer;
+  t.addEventListener('click', function(){
+    tc++;
+    if(tc === 1){
+      timer = setTimeout(function(){ tc = 0; if(s) s.textContent = 'single tap'; }, 300);
+    } else if(tc >= 2){
+      clearTimeout(timer);
+      tc = 0;
+      t.classList.add('tapped');
+      if(s) s.textContent = '✨ double-tap!';
+      setTimeout(function(){ t.classList.remove('tapped'); }, 600);
+    }
+  });
+})();
+
+// 43. gesture: pan
+(function(){
+  var c = document.getElementById('scPan');
+  var t = document.getElementById('scPanTrack');
+  if(!c) return;
+  var down = false, sx, sl;
+  c.addEventListener('mousedown', function(e){
+    down = true; c.style.cursor = 'grabbing';
+    sx = e.pageX - c.offsetLeft;
+    sl = parseInt(t.style.transform?.replace(/[^0-9\-]/g,'') || 0);
+  });
+  c.addEventListener('mousemove', function(e){
+    if(!down) return;
+    var walk = (e.pageX - c.offsetLeft - sx) * 1.5;
+    var max = t.scrollWidth - c.offsetWidth;
+    var pos = Math.max(-max, Math.min(0, sl + walk));
+    t.style.transform = 'translateX('+pos+'px)';
+  });
+  c.addEventListener('mouseup', function(){ down = false; c.style.cursor = 'grab'; });
+  c.addEventListener('mouseleave', function(){ down = false; c.style.cursor = 'grab'; });
+})();
+
+// 44. scroll: sections indicator
+(function(){
+  var c = document.getElementById('scSnap');
+  if(!c) return;
+  c.addEventListener('scroll', function(){
+    var idx = Math.round(c.scrollTop / c.clientHeight);
+    c.querySelectorAll('.ss-dot').forEach(function(d, i){ d.classList.toggle('active', i === idx); });
+  });
+})();
+
+// 45. scroll: driven progress
+(function(){
+  var d = document.getElementById('scDriven');
+  var p = document.getElementById('scDP');
+  if(!d) return;
+  d.addEventListener('scroll', function(){
+    p.style.setProperty('--d-pct', (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100)+'%');
+  });
+})();
+
+// 47. popover dismiss on outside click
+(function(){
+  document.addEventListener('click', function(e){
+    if(!e.target.closest('.popover-wrap')){
+      var pop = document.getElementById('scPop');
+      if(pop) pop.classList.remove('vis');
+    }
+  });
+})();
+
+// 48. accordion toggle
+function scToggleAcc(header){
+  var item = header.parentElement;
+  var open = item.classList.contains('open');
+  if(!open){
+    var container = item.closest('.demo-accord');
+    if(container) container.querySelectorAll('.ai.open').forEach(function(el){ el.classList.remove('open'); });
+  }
+  item.classList.toggle('open');
+}
 </script>
 </body>
 </html>
