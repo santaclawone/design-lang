@@ -202,13 +202,93 @@ tr:hover td{background:rgba(255,255,255,0.01)}
 /* FOOTER */
 footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
 .footer-bottom{text-align:center;font-size:0.8rem;color:#475569}
+
+/* EXPERIMENTAL DEMOS (Out of the Box) */
+.xbtn{padding:4px 10px;border:1px solid rgba(255,255,255,0.08);border-radius:4px;background:rgba(0,0,0,0.2);color:#94a3b8;cursor:pointer;font-size:9px;transition:0.2s;font-family:'JetBrains Mono',monospace}
+.xbtn:hover{border-color:#f59e0b;color:#f1f5f9}
+.xrange{width:100px;height:4px;-webkit-appearance:none;appearance:none;background:rgba(255,255,255,0.06);border-radius:2px;outline:none}
+.xrange::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#f59e0b;cursor:pointer;border:none}
+.demo-mood{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 20px;border-radius:8px;transition:all 0.4s}
+.demo-mood[data-mood=happy]{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2)}
+.demo-mood[data-mood=neutral]{background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.1)}
+.demo-mood[data-mood=sad]{background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15)}
+.demo-mood[data-mood=angry]{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25)}
+.demo-entropy{cursor:pointer;position:relative;width:60px;height:60px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:all 0.3s}
+.entropy-overlay{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.5s;background:radial-gradient(circle at 30% 40%,transparent 30%,rgba(0,0,0,0.3) 60%,rgba(0,0,0,0.6) 100%)}
+.demo-entropy.aged .entropy-overlay{opacity:1}
+.demo-entropy.aged{border-color:rgba(255,255,255,0.15);filter:grayscale(0.3)}
+.demo-ghost{position:relative;width:200px;height:76px}
+.demo-ghost canvas{position:absolute;inset:0;border-radius:4px}
+.ghost-cursor{position:absolute;z-index:2;font-size:16px;pointer-events:none;transition:0.02s linear}
+.demo-timewarp{transition:transform 0.1s}
+.demo-fluid{position:relative;width:100%;height:76px;overflow:hidden}
+.fluid-blob{position:absolute;border-radius:50%;filter:blur(20px);opacity:0.6}
+.fluid-blob:nth-child(1){width:60px;height:60px;top:20px;left:20px}
+.fluid-blob:nth-child(2){width:50px;height:50px;top:10px;left:80px}
+.fluid-blob:nth-child(3){width:40px;height:40px;top:30px;left:130px}
+@keyframes blob1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(20px,-10px) scale(1.2)}66%{transform:translate(-10px,15px) scale(0.9)}}
+@keyframes blob2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-15px,10px) scale(1.1)}66%{transform:translate(10px,-15px) scale(0.8)}}
+@keyframes blob3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(10px,15px) scale(0.8)}66%{transform:translate(-20px,-5px) scale(1.15)}}
+.demo-weather{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 16px;border-radius:8px;transition:all 0.4s}
+.demo-weather[data-weather=sunny]{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.15)}
+.demo-weather[data-weather=rain]{background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15)}
+.demo-weather[data-weather=snow]{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)}
+.demo-weather[data-weather=fog]{background:rgba(148,163,184,0.05);border:1px solid rgba(148,163,184,0.08)}
+.demo-glitch{width:100%;height:60px;display:flex;align-items:center;justify-content:center;position:relative}
+.demo-glitch::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,255,255,0.02) 2px,rgba(255,255,255,0.02) 4px);pointer-events:none}
+.demo-glitch:hover span{animation:glitchAnim 0.3s ease 3}
+@keyframes glitchAnim{0%{transform:translate(-2px,0) skewX(-2deg);opacity:0.8}25%{transform:translate(2px,-1px) skewX(1deg)}50%{transform:translate(-1px,1px) skewX(-1deg)}75%{transform:translate(3px,0) skewX(2deg);opacity:1}}
+.luck-block{width:20px;height:20px;border-radius:4px;transition:all 0.3s}
+.demo-dream{display:flex;gap:12px;align-items:center;justify-content:center;height:60px}
+@keyframes dreamFloat{0%,100%{transform:translateY(0) scale(1);opacity:0.4}50%{transform:translateY(-12px) scale(1.2);opacity:0.8}}
+.soul-demo{padding:4px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);cursor:pointer;font-size:10px;transition:all 0.2s}
+.soul-demo:hover{background:rgba(255,255,255,0.04)}
+.soul-demo.active{border-color:#f59e0b;background:rgba(245,158,11,0.08)}
+.epoch-era{transition:all 0.4s;font-family:'Space Grotesk',sans-serif}
+.epoch-bar{width:80px;height:12px;border-radius:6px;transition:background 0.4s}
+.demo-portal{position:relative;width:100%;height:60px;overflow:hidden;border-radius:4px;cursor:pointer}
+.portal-front,.portal-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;transition:opacity 0.4s}
+.portal-front{background:rgba(6,182,212,0.06);z-index:1;border:1px solid rgba(6,182,212,0.1)}
+.portal-back{background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.15);opacity:0}
+.demo-portal:hover .portal-front{opacity:0}
+.demo-portal:hover .portal-back{opacity:1}
+.demo-resonance{display:flex;align-items:flex-end;gap:4px;height:50px}
+.resonance-bar{width:12px;border-radius:3px 3px 0 0;background:linear-gradient(to top,#06b6d4,#8b5cf6);transition:height 0.1s;min-height:4px}
+.resonance-bar:nth-child(1){height:20px}
+.resonance-bar:nth-child(2){height:35px}
+.resonance-bar:nth-child(3){height:45px}
+.resonance-bar:nth-child(4){height:30px}
+.resonance-bar:nth-child(5){height:15px}
+.telepathy-target{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.15);font-size:12px;font-weight:600;position:absolute;transition:all 0.2s}
+#tel1{top:10px;left:20px}
+#tel2{top:10px;left:85px}
+#tel3{top:10px;left:150px}
+.telepathy-glow{position:absolute;width:40px;height:40px;border-radius:50%;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);pointer-events:none;opacity:0;transition:opacity 0.3s}
+.demo-echo{position:relative;height:30px;display:flex;align-items:center;justify-content:center}
+.echo-text{position:relative;z-index:3}
+.echo-ghost{position:absolute;pointer-events:none}
+.echo-1{opacity:0.2;transform:translateY(4px);z-index:2}
+.echo-2{opacity:0.1;transform:translateY(8px);z-index:1}
+.echo-3{opacity:0.05;transform:translateY(12px)}
+.demo-gravity{position:relative;width:100%;height:60px}
+.grav-body{position:absolute;font-size:16px;transition:0.08s linear;cursor:default}
+#grav1{top:20px;left:30px;color:#06b6d4}
+#grav2{top:30px;left:100px;color:#8b5cf6}
+#grav3{top:10px;left:160px;color:#f59e0b}
+.demo-hologram{position:relative;width:100%;height:60px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.holo-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(6,182,212,0.04) 3px,rgba(6,182,212,0.04) 4px);animation:holoScan 2s linear infinite;pointer-events:none}
+@keyframes holoScan{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+@keyframes dilationSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.demo-decay{width:100%;height:50px;display:flex;align-items:center;justify-content:center}
+.demo-4thwall{width:100%;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;border-radius:4px;border:1px dashed rgba(255,255,255,0.06);transition:0.3s}
+.demo-4thwall:hover{border-color:rgba(255,255,255,0.12)}
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="badge">✦ v0.2 — 70 properties</div>
+  <div class="badge">✦ v0.2 — 95 properties</div>
   <h1>Design Lang<br><span class="gradient">Beyond CSS</span></h1>
   <p>A declarative design language that compiles to CSS + JS. Instead of hacking CSS for modern UI patterns, Design Lang makes them native — physics, materials, depth, motion, accessibility, haptics, and more.</p>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -221,7 +301,7 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
   <div class="container">
     <div style="margin-bottom:40px">
       <span class="badge">✦ Complete Property Reference</span>
-      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">70 properties,<br>one language.</h2>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">95 properties,<br>one language.</h2>
       <p style="color:#64748b;font-size:0.9rem"><span class="tag-v1">v0.1</span> Original property &nbsp; <span class="tag-new">NEW</span> Added June 2026</p>
     </div>
 
@@ -370,6 +450,34 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
         <tr><td class="property">ui</td><td class="code">divider(variant: dashed | gradient | labeled)</td><td class="desc">Themed visual separator <span class="tag-new">NEW+</span></td></tr>
         <tr><td class="property">ui</td><td class="code">badge(count: 23, limit: 99, pulse: true)</td><td class="desc">Notification badge/dot with count <span class="tag-new">NEW+</span></td></tr>
 
+        <!-- EXPERIMENTAL (Out of the Box) -->
+        <tr class="category-header"><td colspan="3">Experimental ⚡</td></tr>
+        <tr><td class="property">mood</td><td class="code">adaptive(sentiment: auto)</td><td class="desc">Color/tone shifts with content sentiment <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">life</td><td class="code">entropy(intensity: 0.3, aging: 60s)</td><td class="desc">Element weathers/decays over time <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">memory</td><td class="code">ghost(decay: 0.5, trail: mouse)</td><td class="desc">Fading afterimage of previous state <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">time</td><td class="code">warp(speed: 0.5x..2x, adaptive: true)</td><td class="desc">Animation clock speed modulation <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">physics</td><td class="code">fluid(viscosity: 0.3, flow: organic)</td><td class="desc">Elements flow around each other like liquid <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">weather</td><td class="code">reactive(condition: auto, intensity: 0.5)</td><td class="desc">Element syncs to local weather conditions <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">reality</td><td class="code">glitch(intensity: 0.2, trigger: hover)</td><td class="desc">Intentional digital decay — scan lines, artifacts <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">generative</td><td class="code">infinite(pattern: organic, seed: time)</td><td class="desc">Never-repeating generative art element <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">chaos</td><td class="code">luck(shuffle: 0.3, palette: rotate)</td><td class="desc">Random variation per session/visit <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">data</td><td class="code">hallucination(type: chart, seed: url)</td><td class="desc">Generates plausible speculative data visuals <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">dream</td><td class="code">float(drift: 0.3, orbit: random)</td><td class="desc">Weightless drifting idle animation <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">meta</td><td class="code">inspector(show: compiled, trigger: hover)</td><td class="desc">Element shows its own compiled CSS/JS <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">cursor</td><td class="code">soul(expression: context, mood: auto)</td><td class="desc">Cursor adapts personality by context <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">nostalgia</td><td class="code">epoch(era: 80s | 90s | 00s | 20s | now)</td><td class="desc">Color palette cycles through design eras <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">flock</td><td class="code">behavior(count: 12, cohesion: 0.5)</td><td class="desc">Elements move together as a flock <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">spatial</td><td class="code">portal(layer: depth, reveal: hover)</td><td class="desc">Window into a layer beneath the surface <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">sound</td><td class="code">resonance(frequency: 440hz, viz: bars)</td><td class="desc">Visual vibration at color frequency <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">interaction</td><td class="code">telepathy(radius: 150px, prediction: velocity)</td><td class="desc">Predicts hover target from cursor velocity <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">typography</td><td class="code">echo(decay: 1.5s, axis: y)</td><td class="desc">Text leaves a fading trail of itself <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">meta</td><td class="code">self-aware(show: renders, memory: true)</td><td class="desc">Element reports its own lifecycle stats <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">gravity</td><td class="code">field(strength: 0.3, radius: 200px)</td><td class="desc">Elements attracted to cursor position <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">surface</td><td class="code">hologram(scan: 60hz, flicker: 0.1)</td><td class="desc">Holographic scan-line effect <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">temporal</td><td class="code">dilation(speed: 0.5x, zone: idle)</td><td class="desc">Element time slows when user is inactive <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">entropy</td><td class="code">decay(rate: 0.1, corruption: glitch)</td><td class="desc">Digital corruption on prolonged interaction <span class="tag-new">NEW+</span></td></tr>
+        <tr><td class="property">reality</td><td class="code">break(4th-wall: true, meta: inspect)</td><td class="desc">Element breaks the 4th wall — shows its own code <span class="tag-new">NEW+</span></td></tr>
+
       </tbody>
     </table>
   </div>
@@ -380,7 +488,7 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
   <div class="container">
     <div style="margin-bottom:40px">
       <span class="badge">✦ Interactive Showcase</span>
-      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">50 properties<br>in action.</h2>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em">75 properties<br>in action.</h2>
       <p style="color:#64748b;font-size:0.9rem">Hover, press, touch — 50 interactive demos showing Design Lang in action</p>
     </div>
 
@@ -1009,7 +1117,7 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
         <div class="sc-number">#47 <span class="tag-new">NEW+</span></div>
         <div class="demo-box" style="flex-direction:column;padding-top:24px">
           <div class="popover-wrap">
-            <div class="popover-box" id="scPop">✦ 70 properties — v0.2 coming</div>
+            <div class="popover-box" id="scPop">✦ 95 properties — v0.2 experimental</div>
             <button class="popover-trig" onclick="var p=document.getElementById('scPop');p.classList.toggle('vis')">Popover</button>
           </div>
         </div>
@@ -1069,6 +1177,386 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
         <div class="sc-desc">Notification badge/dot with count overflow and pulse animation.</div>
       </div>
 
+      <!-- 51. mood: adaptive -->
+      <div class="showcase-card">
+        <div class="sc-number">#51 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:6px">
+          <div class="demo-mood" id="scMood">
+            <span style="font-size:18px" id="scMoodIcon">😐</span>
+            <span style="font-size:10px;color:#64748b" id="scMoodLabel">neutral</span>
+          </div>
+          <div style="display:flex;gap:4px">
+            <button class="xbtn" onclick="setMood('happy')">😊</button>
+            <button class="xbtn" onclick="setMood('neutral')">😐</button>
+            <button class="xbtn" onclick="setMood('sad')">😢</button>
+            <button class="xbtn" onclick="setMood('angry')">😠</button>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">mood: adaptive</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">mood: adaptive(sentiment: auto)</div>
+        <div class="sc-desc">Color/tone shifts with content sentiment. Happy→warm, angry→red glow.</div>
+      </div>
+
+      <!-- 52. life: entropy -->
+      <div class="showcase-card">
+        <div class="sc-number">#52 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:6px">
+          <div class="demo-entropy" id="scEntropy" onclick="ageElement()">
+            <div style="font-size:24px;transition:0.3s" id="scEntropyFace">✨</div>
+            <div class="entropy-overlay" id="scEntropyOverlay"></div>
+          </div>
+          <span style="font-size:9px;color:#475569">click to age ↻</span>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">life: entropy</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">life: entropy(intensity: 0.3, aging: 60s)</div>
+        <div class="sc-desc">Element weathers/decays over time. Cracks, fade, patina — digital aging.</div>
+      </div>
+
+      <!-- 53. memory: ghost -->
+      <div class="showcase-card">
+        <div class="sc-number">#53 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-ghost" id="scGhost">
+            <div class="ghost-cursor" id="scGhostCursor">👆</div>
+            <canvas id="scGhostCanvas" width="200" height="80"></canvas>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">memory: ghost</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">memory: ghost(decay: 0.5, trail: mouse)</div>
+        <div class="sc-desc">Fading afterimage of previous state. Move mouse to leave a ghost trail.</div>
+      </div>
+
+      <!-- 54. time: warp -->
+      <div class="showcase-card">
+        <div class="sc-number">#54 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:6px">
+          <div class="demo-timewarp" id="scTimeWarp" style="font-size:28px">🔄</div>
+          <input type="range" min="1" max="50" value="25" class="xrange" id="scTimeSlider" oninput="setTimeWarp(this.value)">
+          <span style="font-size:9px;color:#475569" id="scTimeLabel">1x speed</span>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">time: warp</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">time: warp(speed: 0.5x..2x, adaptive: true)</div>
+        <div class="sc-desc">Animation clock speed modulation. Slow down for reflection, speed up for urgency.</div>
+      </div>
+
+      <!-- 55. physics: fluid -->
+      <div class="showcase-card">
+        <div class="sc-number">#55 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;overflow:hidden">
+          <div class="demo-fluid" id="scFluid">
+            <div class="fluid-blob" style="background:rgba(6,182,212,0.15);animation:blob1 6s ease-in-out infinite"></div>
+            <div class="fluid-blob" style="background:rgba(139,92,246,0.12);animation:blob2 8s ease-in-out infinite"></div>
+            <div class="fluid-blob" style="background:rgba(245,158,11,0.1);animation:blob3 7s ease-in-out infinite"></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">physics: fluid</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">physics: fluid(viscosity: 0.3, flow: organic)</div>
+        <div class="sc-desc">Elements flow around each other like liquid. Organic container filling.</div>
+      </div>
+
+      <!-- 56. weather: reactive -->
+      <div class="showcase-card">
+        <div class="sc-number">#56 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:6px">
+          <div class="demo-weather" id="scWeather">
+            <span style="font-size:28px" id="scWeatherIcon">☀️</span>
+            <span style="font-size:10px;color:#64748b" id="scWeatherLabel">sunny</span>
+          </div>
+          <div style="display:flex;gap:4px">
+            <button class="xbtn" onclick="setWeather('sunny')">☀️</button>
+            <button class="xbtn" onclick="setWeather('rain')">🌧️</button>
+            <button class="xbtn" onclick="setWeather('snow')">❄️</button>
+            <button class="xbtn" onclick="setWeather('fog')">🌫️</button>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">weather: reactive</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">weather: reactive(condition: auto, intensity: 0.5)</div>
+        <div class="sc-desc">Element syncs to local weather. Rain streaks, sun glow, frost, fog blur.</div>
+      </div>
+
+      <!-- 57. reality: glitch -->
+      <div class="showcase-card">
+        <div class="sc-number">#57 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column">
+          <div class="demo-glitch" id="scGlitch">
+            <span style="font-size:20px;font-weight:700;font-family:'Space Grotesk',sans-serif;transition:0.3s" id="scGlitchText">GL1TCH</span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">reality: glitch</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">reality: glitch(intensity: 0.2, trigger: hover)</div>
+        <div class="sc-desc">Intentional digital decay — scan lines, chromatic aberration, pixel corruption.</div>
+      </div>
+
+      <!-- 58. generative: infinite -->
+      <div class="showcase-card">
+        <div class="sc-number">#58 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;padding:4px">
+          <canvas id="scGenCanvas" width="200" height="76" style="border-radius:4px"></canvas>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">generative: infinite</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">generative: infinite(pattern: organic, seed: time)</div>
+        <div class="sc-desc">Never-repeating generative art. Unique pattern every page load.</div>
+      </div>
+
+      <!-- 59. chaos: luck -->
+      <div class="showcase-card">
+        <div class="sc-number">#59 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:6px">
+          <div class="demo-luck" id="scLuck" style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+            <div class="luck-block" style="background:#06b6d4"></div>
+            <div class="luck-block" style="background:#8b5cf6"></div>
+            <div class="luck-block" style="background:#f59e0b"></div>
+          </div>
+          <button class="xbtn" onclick="shuffleLuck()">🎲 Shuffle</button>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">chaos: luck</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">chaos: luck(shuffle: 0.3, palette: rotate)</div>
+        <div class="sc-desc">Random variation per session. Colors shuffle, layout shifts — every visit unique.</div>
+      </div>
+
+      <!-- 60. data: hallucination -->
+      <div class="showcase-card">
+        <div class="sc-number">#60 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;padding:4px">
+          <canvas id="scHaluCanvas" width="200" height="76" style="border-radius:4px"></canvas>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">data: hallucination</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">data: hallucination(type: chart, seed: url)</div>
+        <div class="sc-desc">Generates plausible speculative data visuals. For wireframes and vibes.</div>
+      </div>
+
+      <!-- 61. dream: float -->
+      <div class="showcase-card">
+        <div class="sc-number">#61 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;overflow:hidden">
+          <div class="demo-dream" id="scDream">
+            <span style="font-size:16px;animation:dreamFloat 4s ease-in-out infinite">✦</span>
+            <span style="font-size:12px;animation:dreamFloat 5s ease-in-out infinite 0.5s">✦</span>
+            <span style="font-size:20px;animation:dreamFloat 6s ease-in-out infinite 1s">✦</span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">dream: float</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">dream: float(drift: 0.3, orbit: random)</div>
+        <div class="sc-desc">Weightless drifting idle animation. Hypnotic, slow, aimless motion.</div>
+      </div>
+
+      <!-- 62. meta: inspector -->
+      <div class="showcase-card">
+        <div class="sc-number">#62 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px;padding:8px" id="scInspector">
+          <div style="font-size:8px;color:#64748b;font-family:'JetBrains Mono',monospace;line-height:1.6">
+            <span style="color:#a3d977">↓ .design</span><br>
+            <span>mood: adaptive</span><br>
+            <span style="color:#64748b">→ compiles to:</span><br>
+            <span style="color:#06b6d4">.el { color: var(--sentiment); transition: 0.4s }</span><br>
+            <span style="color:#8b5cf6">.el::after { filter: hue-rotate(var(--mood)); }</span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">meta: inspector</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">meta: inspector(show: compiled, trigger: hover)</div>
+        <div class="sc-desc">Element shows its own compiled CSS/JS. Self-documenting, live.</div>
+      </div>
+
+      <!-- 63. cursor: soul -->
+      <div class="showcase-card">
+        <div class="sc-number">#63 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px">
+          <div class="demo-soul" id="scSoul" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+            <span class="soul-demo" data-mood="gentle" onmouseenter="highlightSoul(this)" onmouseleave="unhighlightSoul()">🫳 gentle</span>
+            <span class="soul-demo" data-mood="sharp" onmouseenter="highlightSoul(this)" onmouseleave="unhighlightSoul()">⚡ sharp</span>
+            <span class="soul-demo" data-mood="playful" onmouseenter="highlightSoul(this)" onmouseleave="unhighlightSoul()">🌀 playful</span>
+          </div>
+          <span style="font-size:9px;color:#475569" id="scSoulLabel">hover to feel the cursor</span>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">cursor: soul</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">cursor: soul(expression: context, mood: auto)</div>
+        <div class="sc-desc">Cursor adapts personality by context. Gentle over images, sharp over inputs.</div>
+      </div>
+
+      <!-- 64. nostalgia: epoch -->
+      <div class="showcase-card">
+        <div class="sc-number">#64 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:6px">
+          <div class="demo-epoch" id="scEpoch" style="display:flex;flex-direction:column;align-items:center;gap:4px">
+            <span class="epoch-era" style="font-size:10px;font-weight:600;letter-spacing:1px">SYNTHWAVE '80s</span>
+            <div class="epoch-bar"></div>
+            <span style="font-size:9px;color:#64748b">pink·cyan·purple</span>
+          </div>
+          <div style="display:flex;gap:4px">
+            <button class="xbtn" onclick="setEra(0)">80s</button>
+            <button class="xbtn" onclick="setEra(1)">90s</button>
+            <button class="xbtn" onclick="setEra(2)">00s</button>
+            <button class="xbtn" onclick="setEra(3)">Now</button>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">nostalgia: epoch</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">nostalgia: epoch(era: 80s | 90s | 00s | 20s | now)</div>
+        <div class="sc-desc">Color palette cycles through design eras. 80s synthwave → 90s grunge → now.</div>
+      </div>
+
+      <!-- 65. flock: behavior -->
+      <div class="showcase-card">
+        <div class="sc-number">#65 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;padding:4px">
+          <canvas id="scFlockCanvas" width="200" height="76" style="border-radius:4px"></canvas>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">flock: behavior</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">flock: behavior(count: 12, cohesion: 0.5)</div>
+        <div class="sc-desc">Elements move together as a flock — emergent group behavior, no leader.</div>
+      </div>
+
+      <!-- 66. spatial: portal -->
+      <div class="showcase-card">
+        <div class="sc-number">#66 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;overflow:hidden">
+          <div class="demo-portal" id="scPortal">
+            <div class="portal-front">surface</div>
+            <div class="portal-back">✦ beneath ✦</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">spatial: portal</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">spatial: portal(layer: depth, reveal: hover)</div>
+        <div class="sc-desc">Window into a layer beneath the surface. Peek behind the UI.</div>
+      </div>
+
+      <!-- 67. sound: resonance -->
+      <div class="showcase-card">
+        <div class="sc-number">#67 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px">
+          <div class="demo-resonance" id="scResonance">
+            <div class="resonance-bar" id="resBar1"></div>
+            <div class="resonance-bar" id="resBar2"></div>
+            <div class="resonance-bar" id="resBar3"></div>
+            <div class="resonance-bar" id="resBar4"></div>
+            <div class="resonance-bar" id="resBar5"></div>
+          </div>
+          <button class="xbtn" onclick="playResonance()">🔊 resonate</button>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">sound: resonance</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">sound: resonance(frequency: 440hz, viz: bars)</div>
+        <div class="sc-desc">Visual vibration at tonal frequency. Bars pulse at the element's color pitch.</div>
+      </div>
+
+      <!-- 68. interaction: telepathy -->
+      <div class="showcase-card">
+        <div class="sc-number">#68 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px">
+          <div class="demo-telepathy" id="scTelepathy" style="position:relative;width:100%;height:50px">
+            <span class="telepathy-target" id="tel1">A</span>
+            <span class="telepathy-target" id="tel2">B</span>
+            <span class="telepathy-target" id="tel3">C</span>
+            <div class="telepathy-glow" id="telGlow"></div>
+          </div>
+          <span style="font-size:9px;color:#475569">move mouse — it predicts your target</span>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">interaction: telepathy</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">interaction: telepathy(radius: 150px, prediction: velocity)</div>
+        <div class="sc-desc">Predicts hover target from cursor velocity vector. Anticipates clicks.</div>
+      </div>
+
+      <!-- 69. typography: echo -->
+      <div class="showcase-card">
+        <div class="sc-number">#69 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;overflow:hidden;position:relative">
+          <div class="demo-echo" id="scEcho" style="font-size:14px;font-weight:600;font-family:'Space Grotesk',sans-serif">
+            <span class="echo-text">echo</span>
+            <span class="echo-ghost echo-1">echo</span>
+            <span class="echo-ghost echo-2">echo</span>
+            <span class="echo-ghost echo-3">echo</span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">typography: echo</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">typography: echo(decay: 1.5s, axis: y)</div>
+        <div class="sc-desc">Text leaves a fading trail of itself. Poetic, impractical, beautiful.</div>
+      </div>
+
+      <!-- 70. meta: self-aware -->
+      <div class="showcase-card">
+        <div class="sc-number">#70 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px">
+          <div class="demo-selfaware" id="scSelfAware">
+            <span style="font-size:10px;color:#64748b;font-family:'JetBrains Mono',monospace">renders: <span id="scRenderCount">0</span></span>
+            <span style="font-size:10px;color:#64748b;font-family:'JetBrains Mono',monospace">memory: <span id="scMemory">2.4kb</span></span>
+            <span style="font-size:10px;color:#64748b;font-family:'JetBrains Mono',monospace">props: <span id="scProps">95 total</span></span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">meta: self-aware</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">meta: self-aware(show: renders, memory: true)</div>
+        <div class="sc-desc">Element reports its own lifecycle stats. The component that knows it's a component.</div>
+      </div>
+
+      <!-- 71. gravity: field -->
+      <div class="showcase-card">
+        <div class="sc-number">#71 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;overflow:hidden">
+          <div class="demo-gravity" id="scGravity">
+            <div class="grav-body" id="grav1">●</div>
+            <div class="grav-body" id="grav2">●</div>
+            <div class="grav-body" id="grav3">●</div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">gravity: field</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">gravity: field(strength: 0.3, radius: 200px)</div>
+        <div class="sc-desc">Elements attracted to cursor position. Pull them around like gravity.</div>
+      </div>
+
+      <!-- 72. surface: hologram -->
+      <div class="showcase-card">
+        <div class="sc-number">#72 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;overflow:hidden">
+          <div class="demo-hologram" id="scHolo">
+            <span style="font-size:20px;font-weight:700;position:relative;z-index:1;font-family:'Space Grotesk',sans-serif;letter-spacing:4px;color:#06b6d4">HOLO</span>
+            <div class="holo-scan"></div>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">surface: hologram</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">surface: hologram(scan: 60hz, flicker: 0.1)</div>
+        <div class="sc-desc">Holographic scan-line surface. Retro-futuristic projection effect.</div>
+      </div>
+
+      <!-- 73. temporal: dilation -->
+      <div class="showcase-card">
+        <div class="sc-number">#73 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px">
+          <div class="demo-dilation" id="scDilation">
+            <span style="font-size:24px;animation:dilationSpin 2s linear infinite" id="scDilationIcon">⏳</span>
+            <span style="font-size:10px;color:#64748b" id="scDilationLabel">time: normal</span>
+          </div>
+          <span class="xbtn" onclick="toggleDilation()">slow time</span>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">temporal: dilation</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">temporal: dilation(speed: 0.5x, zone: idle)</div>
+        <div class="sc-desc">Time slows when user is idle. Element enters a meditative slow-motion.</div>
+      </div>
+
+      <!-- 74. entropy: decay -->
+      <div class="showcase-card">
+        <div class="sc-number">#74 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px">
+          <div class="demo-decay" id="scDecay">
+            <span style="font-size:24px;letter-spacing:2px;font-weight:700;transition:0.3s" id="scDecayText">DATA</span>
+          </div>
+          <button class="xbtn" onclick="corruptData()">💀 corrupt</button>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">entropy: decay</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">entropy: decay(rate: 0.1, corruption: glitch)</div>
+        <div class="sc-desc">Digital corruption on prolonged interaction. Pixels scatter, data degrades.</div>
+      </div>
+
+      <!-- 75. reality: break -->
+      <div class="showcase-card">
+        <div class="sc-number">#75 <span class="tag-new">⚡</span></div>
+        <div class="demo-box" style="flex-direction:column;gap:4px">
+          <div class="demo-4thwall" id="scWall" onclick="breakWall()">
+            <span style="font-size:12px;color:#64748b">[click to break]</span>
+            <span style="font-size:10px;color:#475569;font-family:'JetBrains Mono',monospace;display:none" id="scWallCode">&lt;!-- this is an HTML comment inside a showcase card inside a browser inside... --&gt;</span>
+          </div>
+        </div>
+        <div class="sc-number" style="color:#f59e0b;font-weight:700">reality: break</div>
+        <div class="sc-code" style="border-color:rgba(245,158,11,0.15)">reality: break(4th-wall: true, meta: inspect)</div>
+        <div class="sc-desc">Element breaks the 4th wall — shows its own source code. Meta.</div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1077,7 +1565,7 @@ footer{padding:60px 0 30px;border-top:1px solid rgba(255,255,255,0.04)}
 <footer>
   <div class="container">
     <div class="footer-bottom">
-      <p>Design Lang v0.2 — 70 properties (20 original + 50 new) — MIT — Empire Creative</p>
+      <p>Design Lang v0.2 — 95 properties (20 original + 75 new) — MIT — Empire Creative</p>
       <p style="margin-top:4px"><a href="https://github.com/santaclawone/design-lang" style="color:#06b6d4;text-decoration:none">GitHub repo →</a> &nbsp;·&nbsp; <a href="https://santaclawone.github.io/ds-studios-portfolio/" style="color:#06b6d4;text-decoration:none">DS Studios →</a></p>
     </div>
   </div>
@@ -1324,6 +1812,396 @@ function scToggleAcc(header){
   }
   item.classList.toggle('open');
 }
+
+// ─── EXPERIMENTAL DEMOS ───
+
+// 51. mood: adaptive
+function setMood(mood){
+  var el = document.getElementById('scMood');
+  var icon = document.getElementById('scMoodIcon');
+  var label = document.getElementById('scMoodLabel');
+  if(!el) return;
+  el.setAttribute('data-mood', mood);
+  var icons = {happy:'😊',neutral:'😐',sad:'😢',angry:'😠'};
+  var labels = {happy:'joyful',neutral:'neutral',sad:'melancholy',angry:'intense'};
+  icon.textContent = icons[mood] || '😐';
+  label.textContent = labels[mood] || 'neutral';
+}
+
+// 52. life: entropy
+var entropyAge = 0;
+function ageElement(){
+  var el = document.getElementById('scEntropy');
+  var face = document.getElementById('scEntropyFace');
+  if(!el) return;
+  entropyAge = Math.min(entropyAge + 1, 5);
+  el.classList.add('aged');
+  var faces = ['✨','⭐','🌑','💀','☠️','🪦'];
+  face.textContent = faces[entropyAge] || '✨';
+}
+
+// 53. memory: ghost
+(function(){
+  var canvas = document.getElementById('scGhostCanvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var cursor = document.getElementById('scGhostCursor');
+  var trail = [];
+  canvas.addEventListener('mousemove', function(e){
+    var r = canvas.getBoundingClientRect();
+    var x = e.clientX - r.left;
+    var y = e.clientY - r.top;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+    trail.push({x:x, y:y, alpha:1});
+    if(trail.length > 30) trail.shift();
+    ctx.clearRect(0,0,200,76);
+    for(var i=0;i<trail.length;i++){
+      var t = trail[i];
+      t.alpha -= 0.03;
+      if(t.alpha > 0){
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, 4, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(6,182,212,'+(t.alpha*0.4)+')';
+        ctx.fill();
+      }
+    }
+  });
+  canvas.addEventListener('mouseleave', function(){
+    trail = [];
+    ctx.clearRect(0,0,200,76);
+    cursor.style.left = '';
+    cursor.style.top = '';
+  });
+})();
+
+// 54. time: warp
+var timeWarpInterval;
+function setTimeWarp(val){
+  var el = document.getElementById('scTimeWarp');
+  var label = document.getElementById('scTimeLabel');
+  if(!el) return;
+  var speed = 0.5 + (val/50) * 1.5;
+  label.textContent = speed.toFixed(1) + 'x speed';
+  if(timeWarpInterval) clearInterval(timeWarpInterval);
+  var angle = 0;
+  timeWarpInterval = setInterval(function(){
+    angle += 5 * speed;
+    el.style.transform = 'rotate('+angle+'deg)';
+  }, 50);
+}
+setTimeWarp(25);
+
+// 56. weather: reactive
+function setWeather(w){
+  var el = document.getElementById('scWeather');
+  var icon = document.getElementById('scWeatherIcon');
+  var label = document.getElementById('scWeatherLabel');
+  if(!el) return;
+  el.setAttribute('data-weather', w);
+  var icons = {sunny:'☀️',rain:'🌧️',snow:'❄️',fog:'🌫️'};
+  var labels = {sunny:'clear skies',rain:'precipitation',snow:'blizzard',fog:'low visibility'};
+  icon.textContent = icons[w] || '☀️';
+  label.textContent = labels[w] || 'clear';
+}
+
+// 58. generative: infinite
+(function(){
+  var c = document.getElementById('scGenCanvas');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var seed = Math.random() * 10000;
+  function draw(){
+    ctx.clearRect(0,0,200,76);
+    for(var i=0;i<20;i++){
+      var x = Math.sin(seed+i*0.5)*80 + 100;
+      var y = Math.cos(seed*0.7+i*0.3)*30 + 38;
+      var r = Math.abs(Math.sin(seed+i)*12) + 3;
+      ctx.beginPath();
+      ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fillStyle = 'hsla('+((seed*10+i*50)%360)+',60%,50%,0.15)';
+      ctx.fill();
+      ctx.strokeStyle = 'hsla('+((seed*10+i*50+30)%360)+',60%,60%,0.3)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+  draw();
+})();
+
+// 59. chaos: luck
+function shuffleLuck(){
+  var blocks = document.querySelectorAll('.luck-block');
+  var colors = ['#06b6d4','#8b5cf6','#f59e0b','#ec4899','#10b981','#ef4444','#6366f1','#14b8a6'];
+  blocks.forEach(function(b){
+    b.style.background = colors[Math.floor(Math.random()*colors.length)];
+    var s = 0.8 + Math.random() * 0.4;
+    b.style.transform = 'scale('+s+') rotate('+(Math.random()*20-10)+'deg)';
+  });
+}
+
+// 60. data: hallucination
+(function(){
+  var c = document.getElementById('scHaluCanvas');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  function draw(){
+    ctx.clearRect(0,0,200,76);
+    var bars = [];
+    for(var i=0;i<8;i++){
+      bars.push(Math.random()*60+5);
+    }
+    bars.forEach(function(h,i){
+      var x = i * 25 + 8;
+      var grad = ctx.createLinearGradient(x,76-h,x,76);
+      grad.addColorStop(0,'rgba(6,182,212,'+(0.4+Math.random()*0.3)+')');
+      grad.addColorStop(1,'rgba(139,92,246,'+(0.2+Math.random()*0.3)+')');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.roundRect ? ctx.roundRect(x,76-h,18,h,3) : ctx.rect(x,76-h,18,h);
+      ctx.fill();
+    });
+  }
+  draw();
+})();
+
+// 63. cursor: soul
+function highlightSoul(el){
+  document.querySelectorAll('.soul-demo').forEach(function(s){ s.classList.remove('active'); });
+  el.classList.add('active');
+  var label = document.getElementById('scSoulLabel');
+  var mood = el.getAttribute('data-mood');
+  var msgs = {gentle:'🫳 soft, rounded, warm',sharp:'⚡ precise, angular, fast',playful:'🌀 bouncy, colorful, loose'};
+  label.textContent = msgs[mood] || '';
+}
+function unhighlightSoul(){
+  document.querySelectorAll('.soul-demo').forEach(function(s){ s.classList.remove('active'); });
+  var label = document.getElementById('scSoulLabel');
+  label.textContent = 'hover to feel the cursor';
+}
+
+// 64. nostalgia: epoch
+var eras = [
+  {name:'SYNTHWAVE 80s', colors:['#ff2d78','#00d4ff','#aa00ff'], label:'pink·cyan·purple'},
+  {name:'GRUNGE 90s', colors:['#8b4513','#708090','#556b2f'], label:'brown·grey·olive'},
+  {name:'Y2K 00s', colors:['#c0c0c0','#00bfff','#ff1493'], label:'silver·blue·pink'},
+  {name:'MODERN 20s', colors:['#06b6d4','#8b5cf6','#f59e0b'], label:'cyan·purple·amber'}
+];
+function setEra(idx){
+  var era = eras[idx];
+  if(!era) return;
+  var nameEl = document.querySelector('.epoch-era');
+  var bar = document.querySelector('.epoch-bar');
+  var label = document.querySelector('.demo-epoch span:last-child');
+  if(nameEl) nameEl.textContent = era.name;
+  if(bar) bar.style.background = 'linear-gradient(90deg,'+era.colors.join(',')+')';
+  if(label) label.textContent = era.label;
+}
+setEra(0);
+
+// 65. flock: behavior
+(function(){
+  var c = document.getElementById('scFlockCanvas');
+  if(!c) return;
+  var ctx = c.getContext('2d');
+  var boids = [];
+  for(var i=0;i<12;i++){
+    boids.push({x:Math.random()*200,y:Math.random()*76,vx:(Math.random()-0.5)*2,vy:(Math.random()-0.5)*2});
+  }
+  function update(){
+    ctx.clearRect(0,0,200,76);
+    // Cohesion
+    boids.forEach(function(b){
+      var cx=0,cy=0,count=0;
+      boids.forEach(function(o){
+        if(o===b) return;
+        var dx = o.x - b.x, dy = o.y - b.y;
+        var d = Math.sqrt(dx*dx+dy*dy);
+        if(d < 40){ cx += dx; cy += dy; count++; }
+      });
+      if(count){ b.vx += (cx/count)*0.005; b.vy += (cy/count)*0.005; }
+      // Keep in bounds
+      if(b.x < 10) b.vx += 0.1;
+      if(b.x > 190) b.vx -= 0.1;
+      if(b.y < 10) b.vy += 0.1;
+      if(b.y > 66) b.vy -= 0.1;
+      // Damping
+      b.vx *= 0.98; b.vy *= 0.98;
+      b.x += b.vx; b.y += b.vy;
+    });
+    boids.forEach(function(b){
+      ctx.beginPath();
+      ctx.arc(b.x,b.y,3,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(6,182,212,0.5)';
+      ctx.fill();
+    });
+    requestAnimationFrame(update);
+  }
+  update();
+})();
+
+// 67. sound: resonance
+function playResonance(){
+  var bars = document.querySelectorAll('.resonance-bar');
+  var heights = [10,25,40,35,20,45,30,15];
+  bars.forEach(function(b,i){
+    var h = heights[Math.floor(Math.random()*heights.length)];
+    b.style.height = h + 'px';
+    setTimeout(function(){ b.style.height = (Math.random()*30+10)+'px'; }, 200);
+  });
+  setTimeout(function(){
+    bars.forEach(function(b,i){
+      b.style.height = [20,35,45,30,15][i] + 'px';
+    });
+  }, 600);
+}
+
+// 68. interaction: telepathy
+(function(){
+  var demo = document.getElementById('scTelepathy');
+  if(!demo) return;
+  var targets = demo.querySelectorAll('.telepathy-target');
+  var glow = document.getElementById('telGlow');
+  demo.addEventListener('mousemove', function(e){
+    var r = demo.getBoundingClientRect();
+    var mx = e.clientX - r.left;
+    var my = e.clientY - r.top;
+    // Find nearest target
+    var nearest = null, minDist = Infinity;
+    targets.forEach(function(t){
+      var tr = t.getBoundingClientRect();
+      var tx = tr.left + tr.width/2 - r.left;
+      var ty = tr.top + tr.height/2 - r.top;
+      var d = Math.sqrt((mx-tx)*(mx-tx)+(my-ty)*(my-ty));
+      if(d < minDist){ minDist = d; nearest = t; }
+    });
+    if(nearest && minDist < 60){
+      var nr = nearest.getBoundingClientRect();
+      var nx = nr.left + nr.width/2 - r.left - 20;
+      var ny = nr.top + nr.height/2 - r.top - 20;
+      glow.style.left = nx + 'px';
+      glow.style.top = ny + 'px';
+      glow.style.opacity = 1 - (minDist/60);
+      nearest.style.borderColor = 'rgba(245,158,11,0.4)';
+    } else {
+      glow.style.opacity = 0;
+      targets.forEach(function(t){ t.style.borderColor = ''; });
+    }
+  });
+  demo.addEventListener('mouseleave', function(){
+    glow.style.opacity = 0;
+    targets.forEach(function(t){ t.style.borderColor = ''; });
+  });
+})();
+
+// 71. gravity: field
+(function(){
+  var demo = document.getElementById('scGravity');
+  if(!demo) return;
+  var bodies = demo.querySelectorAll('.grav-body');
+  demo.addEventListener('mousemove', function(e){
+    var r = demo.getBoundingClientRect();
+    var mx = e.clientX - r.left;
+    var my = e.clientY - r.top;
+    bodies.forEach(function(b, i){
+      var offset = (i+1)*20;
+      var dx = mx - (30+i*65);
+      var dy = my - (25);
+      var d = Math.sqrt(dx*dx+dy*dy);
+      var pull = Math.min(20, 50/d);
+      var tx = dx * pull * 0.3;
+      var ty = dy * pull * 0.3;
+      b.style.transform = 'translate('+tx+'px,'+ty+'px)';
+    });
+  });
+  demo.addEventListener('mouseleave', function(){
+    bodies.forEach(function(b){ b.style.transform = ''; });
+  });
+})();
+
+// 73. temporal: dilation
+var dilated = false;
+function toggleDilation(){
+  var icon = document.getElementById('scDilationIcon');
+  var label = document.getElementById('scDilationLabel');
+  var btn = document.querySelector('#scDilation + span');
+  if(!icon) return;
+  dilated = !dilated;
+  if(dilated){
+    icon.style.animationDuration = '6s';
+    icon.style.opacity = '0.5';
+    label.textContent = 'time: dilated (0.33x)';
+    btn.textContent = 'restore time';
+  } else {
+    icon.style.animationDuration = '2s';
+    icon.style.opacity = '1';
+    label.textContent = 'time: normal';
+    btn.textContent = 'slow time';
+  }
+}
+
+// 74. entropy: decay
+var corruption = 0;
+function corruptData(){
+  var el = document.getElementById('scDecayText');
+  if(!el) return;
+  corruption = Math.min(corruption + 1, 5);
+  var corruptions = ['DATA','D4T4','D@TA','▄A†∆','█▓▒░','⧥⧤⧣⧢'];
+  el.textContent = corruptions[corruption] || 'DATA';
+  el.style.letterSpacing = (2 + corruption * 3) + 'px';
+  el.style.filter = 'blur('+(corruption*0.5)+'px)';
+  el.style.opacity = Math.max(0.2, 1 - corruption*0.15);
+}
+
+// 75. reality: break
+function breakWall(){
+  var code = document.getElementById('scWallCode');
+  var text = document.querySelector('.demo-4thwall span:first-child');
+  if(!code) return;
+  if(code.style.display === 'block'){
+    code.style.display = 'none';
+    text.textContent = '[click to break]';
+  } else {
+    code.style.display = 'block';
+    text.textContent = '[4th wall: broken]';
+  }
+}
+
+// 70. meta: self-aware
+(function(){
+  var rc = document.getElementById('scRenderCount');
+  if(!rc) return;
+  var count = 0;
+  setInterval(function(){
+    count++;
+    rc.textContent = count;
+  }, 1000);
+})();
+
+// 57. reality: glitch hover effect
+(function(){
+  var el = document.getElementById('scGlitchText');
+  if(!el) return;
+  el.addEventListener('mouseenter', function(){
+    var glitchChars = ['░','▒','▓','█','▌','▐','▀','▄','╳','╲'];
+    var interval = setInterval(function(){
+      var txt = 'GLITCH';
+      var arr = txt.split('');
+      var idx = Math.floor(Math.random()*arr.length);
+      arr[idx] = glitchChars[Math.floor(Math.random()*glitchChars.length)];
+      el.textContent = arr.join('');
+      el.style.transform = 'translate('+(Math.random()*4-2)+'px,'+(Math.random()*4-2)+'px)';
+      el.style.color = ['#06b6d4','#8b5cf6','#ec4899','#f59e0b'][Math.floor(Math.random()*4)];
+    }, 80);
+    el._glitch = interval;
+  });
+  el.addEventListener('mouseleave', function(){
+    clearInterval(el._glitch);
+    el.textContent = 'GLITCH';
+    el.style.transform = '';
+    el.style.color = '';
+  });
+})();
 </script>
 </body>
 </html>
